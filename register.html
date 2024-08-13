@@ -16,7 +16,8 @@
 
 
 </head>
-<body class="bg-gray-400 flex flex-col items-center h-screen">
+
+<body class="relative bg-gray-400 flex flex-col items-center h-screen">
     
     <!-- Navbar -->
      
@@ -25,7 +26,13 @@
         <a class="btn btn-ghost normal-case text-xl">Buy / Sells Corner</a>
     </div>
     <div class="flex flex-end">
+        <select name="" id="">
+            <option value="login">login</option>
+            <option value="Setting">Setting</option>
+            <option value="logout">logout</option>
+        </select>
         <ul class="menu menu-horizontal px-1">
+
             <li><a href="#">login</a></li>
             <li><a href="#">Setting</a></li>
             <li><a href="#">logout</a></li>
@@ -33,8 +40,11 @@
     </div>
 </div>
 
+
 <!-- ------------------------------------------------------------- -->
-    <div class="w-full max-w-lg">
+
+            <!-- Register form -->
+    <div class="w-full max-w-lg mt-5">
         <form id="form" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
             <h1 class="text-center text-2xl font-bold mb-4">Register</h1>
 
@@ -97,6 +107,8 @@
     
             <!-- Paragraph for signup error -->
             <p id="para"  class="text-center text-gray-500 text-xs"></p>
+
+<!-- ------------------------------------------------------------- -->
 
     <script type="module" src="register.js">
 

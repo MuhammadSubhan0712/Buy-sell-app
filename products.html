@@ -15,40 +15,40 @@
         <link href="https://cdn.jsdelivr.net/npm/daisyui@1.14.0/dist/full.css" rel="stylesheet">
 
 </head>
-<body  class="relative bg-green-100 flex items-center justify-center">
+<body class="relative bg-base-200 flex flex-col items-center">
     
-    <!-- Navbar -->
-    <div class="navbar bg-blue-700 w-full text-white">
+  <!-- Navbar -->
+  <div class="navbar bg-primary text-white w-full">
       <div class="flex-1">
           <a class="btn btn-ghost normal-case text-xl">Buy / Sells Corner</a>
       </div>
-      <div class="flex flex-end">
-          <ul class="menu menu-horizontal px-1">
-              <li><a href="#">login</a></li>
-              <li><a href="#">Setting</a></li>
-              <li><a href="#">logout</a></li>
-          </ul>
+      <div class="flex-none">
+          <select class="select select-bordered bg-primary text-white">
+              
+              <option>Login</option>
+              <option>Setting</option>
+              <option>Logout</option>
+          </select>
       </div>
   </div>
-   
-    <div class="relative w-full max-w-md mt-5">
-        <input type="text" class="w-full px-4 py-2 border rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Search...">
-        <button class="absolute top-0 right-0 mt-2 mr-4">
-          <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 6h13M8 12h13m-7 6h7M5 6h.01M5 12h.01M5 18h.01"></path></svg>
-        </button>
-      </div>
 
-      <header class="absolute top-12 left-0 p-5">
-        <h1 class="text-4xl font-bold text-gray-800">Products</h1>
-      </header>
+  <!-- Products Heading -->
+  <div class="p-5">
+      <h1 class="text-4xl font-bold text-gray-800">Products</h1>
+  </div>
+  
+  <!-- Search Bar -->
+  <div class="relative w-full max-w-md mt-10">
+      <input type="text" class="input input-bordered w-full px-4 py-2" placeholder="Search...">
+      <button class="absolute top-0 right-0 mt-2 mr-4 btn btn-ghost">
+          <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 6h13M8 12h13m-7 6h7M5 6h.01M5 12h.01M5 18h.01"></path>
+          </svg>
+      </button>
+  </div>
 
-    
-    <main>
-    <div id="div">
+<!-- ------------------------------------------------------------- -->
 
-
-    </div>
-    </main>
     <script type="module" src="products.js">
 
     </script>
