@@ -4,13 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Post</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.1.2/dist/tailwind.min.css" rel="stylesheet">
+
+    <!-- Font awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    
+    <!-- Tailwind CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
+    <!-- Daisyui CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@1.14.0/dist/full.css" rel="stylesheet">
 
 </head>
 <body class="bg-gray-100 flex items-center justify-center min-h-screen">
-   
+
+
+     <!-- Navbar -->
+  <div class="navbar bg-blue-700 w-full text-white">
+    <div class="flex-1">
+        <a class="btn btn-ghost normal-case text-xl">Buy / Sells Corner</a>
+    </div>
+    <div class="flex flex-end">
+        <ul class="menu menu-horizontal px-1">
+            <li><a href="#">login</a></li>
+            <li><a href="#">Setting</a></li>
+            <li><a href="#">logout</a></li>
+        </ul>
+    </div>
+</div>
      
 
+                      <!-- Main Uploading form -->
     <div class="w-5/6 max-w-lg font-bold mb-6 text-center text-gray-800">
         <div class="w-full h-full bg-white rounded-lg shadow-md p-6">      
             
@@ -49,6 +72,7 @@
                 <input id="number" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"  type="tel" placeholder="Enter your Number">
               </div>
 
+              <!-- Post Button -->
               <div class="flex items-center justify-evenly">
                 <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
                   Post Now
