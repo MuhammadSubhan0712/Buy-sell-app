@@ -14,24 +14,24 @@
     <!-- Daisyui CDN -->
     <link href="https://cdn.jsdelivr.net/npm/daisyui@1.14.0/dist/full.css" rel="stylesheet">
 </head>
-
+ 
 <body class="bg-gray-400 flex flex-col items-center h-screen">
 
 <!-- ------------------------------------------------------------- -->
 
   <!-- Navbar -->
-  <div class="navbar bg-blue-700 w-full text-white">
-      <div class="flex-1">
-          <a class="btn btn-ghost normal-case text-xl">Buy / Sells Corner</a>
-      </div>
-      <div class="flex flex-end">
-          <ul class="menu menu-horizontal px-1">
-              <li><a href="#">login</a></li>
-              <li><a href="#">Setting</a></li>
-              <li><a href="#">logout</a></li>
-          </ul>
-      </div>
-  </div>
+  <div class="navbar bg-primary text-white w-full">
+    <div class="flex-1">
+        <a class="btn btn-ghost normal-case text-xl">Buy / Sells Corner</a>
+    </div>
+    <div class="flex-none">
+        <select id="select" class="select select-bordered bg-primary text-white">
+            <option><a href="./login.html">Login</a></option>
+            <option><a href="./register.html">SignUp</a></option>
+            <option><a href="">Logout</a></option>
+        </select>
+    </div>
+</div>
 
 <!-- ------------------------------------------------------------- -->
 
@@ -74,7 +74,7 @@
       </div>
   </div>
 
-  
+
 <!-- ------------------------------------------------------------- -->
 
       <!-- Script tag -->

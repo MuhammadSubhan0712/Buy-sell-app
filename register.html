@@ -17,26 +17,21 @@
 
 </head>
 
-<body class="relative bg-gray-400 flex flex-col items-center h-screen">
+<body class="relative bg-gray-400 flex flex-col items-center h-full">
     
-    <!-- Navbar -->
-     
-  <div class="navbar bg-blue-700 w-full text-white">
+
+     <!-- Navbar -->
+
+  <div class="navbar bg-primary text-white w-full">
     <div class="flex-1">
         <a class="btn btn-ghost normal-case text-xl">Buy / Sells Corner</a>
     </div>
-    <div class="flex flex-end">
-        <select name="" id="">
-            <option value="login">login</option>
-            <option value="Setting">Setting</option>
-            <option value="logout">logout</option>
+    <div class="flex-none">
+        <select id="select" class="select select-bordered bg-primary text-white">
+            <option><a href="./login.html">Login</a></option>
+            <option><a href="./re">SignUp</a></option>
+            <option><a href="">Logout</a></option>
         </select>
-        <ul class="menu menu-horizontal px-1">
-
-            <li><a href="#">login</a></li>
-            <li><a href="#">Setting</a></li>
-            <li><a href="#">logout</a></li>
-        </ul>
     </div>
 </div>
 
@@ -104,10 +99,10 @@
         </form>
     </div>
 
-    
+  
             <!-- Paragraph for signup error -->
             <p id="para"  class="text-center text-gray-500 text-xs"></p>
-
+   
 <!-- ------------------------------------------------------------- -->
 
     <script type="module" src="register.js">
