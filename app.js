@@ -102,7 +102,7 @@ function renderProducts() {
 
   products.map(items =>{
     display.innerHTML += `
-        <div class="card w-96 bg-blue-900 shadow-xl text-white left-5">
+        <div class="card w-96 border shadow-xl text-white left-5">
         <figure>
             <img src="${items.image}" alt="Sample Image" class="w-full h-48 object-cover">
         </figure>
