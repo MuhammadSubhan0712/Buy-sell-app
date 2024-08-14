@@ -96,7 +96,7 @@ const products = [
     ];
   display = document.querySelector("#div");
 
-  
+// Function to render the products:
 function renderProducts() {
   display.innerHTML = " ";
 
@@ -111,7 +111,7 @@ function renderProducts() {
             <h2 class="card-title">Brand: ${items.brand}</h2>
             <p class="font-size-5"><b>Price: ${items.price}$</b></p>
             <div class="card-actions justify-center">
-                <button class="btn btn-primary">Buy Product</button>
+                <button onclick="tologin()" class="btn btn-primary">Buy Product</button>
             </div>
         </div>
     </div>
@@ -121,3 +121,7 @@ function renderProducts() {
 renderProducts();
 
 
+// function to go login page:
+function tologin() {
+    window.location = "./login.html";
+}
