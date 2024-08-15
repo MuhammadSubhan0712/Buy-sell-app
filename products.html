@@ -1,56 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Products</title>
 
-        <!-- Font awesome CDN -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    
-        <!-- Tailwind CDN -->
-        <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    
-        <!-- Daisyui CDN -->
-        <link href="https://cdn.jsdelivr.net/npm/daisyui@1.14.0/dist/full.css" rel="stylesheet">
+    <!-- Font awesome CDN -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
 
-</head>
-<body class="relative bg-base-200 flex flex-col items-center h-screen">
-    
-  <!-- Navbar -->
- 
-   <div class="navbar bg-primary text-white w-full">
-    <div class="flex-1">
-        <a class="btn btn-ghost normal-case text-xl">Buy / Sells Corner</a>
-    </div>
-    <div class="flex-none">
-        <select id="select" class="select select-bordered bg-primary text-white">
-            <option><a href="./login.html">Login</a></option>
-            <option><a href="./register.html">SignUp</a></option>
-            <option><a href="">Logout</a></option>
+    <!-- Tailwind CDN -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet" />
+
+    <!-- Daisyui CDN -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@1.14.0/dist/full.css"
+      rel="stylesheet" />
+  </head>
+  <body class="relative bg-base-200 flex flex-col items-center h-screen">
+    <!-- Navbar -->
+    <div class="navbar bg-primary text-white w-full">
+      <div class="flex-1">
+        <a class="normal-case text-xl font-bold font-serif"
+          >Buy / Sells Corner</a
+        >
+      </div>
+      <div class="flex-none text-x1 font-serif">
+        <select
+          id="select"
+          class="select select-bordered bg-primary text-white">
+          <option><a href="./login.html">Login</a></option>
+          <option><a href="./register.html">SignUp</a></option>
+          <option><a href="">Logout</a></option>
         </select>
+      </div>
     </div>
-</div>
 
-  <!-- Products Heading -->
-  <div class="p-5">
+    <!-- ------------------------------------------------------------- -->
+
+    <!-- Products Heading -->
+    <div class="p-5">
       <h1 class="text-4xl font-bold text-gray-800">Products</h1>
-  </div>
-  
-  <!-- Search Bar -->
-  <div class="relative w-full max-w-md mt-10">
-      <input type="text" class="input input-bordered w-full px-4 py-2" placeholder="Search...">
+    </div>
+
+    <!-- Search Bar -->
+    <div class="relative w-full max-w-md mt-10">
+      <input
+        type="text"
+        class="input input-bordered w-full px-4 py-2"
+        placeholder="Search..." />
       <button class="absolute top-0 right-0 mt-2 mr-4 btn btn-ghost">
-          <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 6h13M8 12h13m-7 6h7M5 6h.01M5 12h.01M5 18h.01"></path>
-          </svg>
+        <i class="fa-solid fa-magnifying-glass"></i>
       </button>
-  </div>
+    </div>
 
-<!-- ------------------------------------------------------------- -->
+    <!-- ------------------------------------------------------------- -->
 
-    <script type="module" src="products.js">
-
-    </script>
-</body>
+    <script type="module" src="products.js"></script>
+  </body>
 </html>

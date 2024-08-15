@@ -1,96 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Post</title>
 
     <!-- Font awesome CDN -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+
     <!-- Tailwind CDN -->
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet" />
 
     <!-- Daisyui CDN -->
-    <link href="https://cdn.jsdelivr.net/npm/daisyui@1.14.0/dist/full.css" rel="stylesheet">
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@1.14.0/dist/full.css"
+      rel="stylesheet" />
+  </head>
 
-
-</head>
-
-
-<body class="bg-gray-400 flex flex-col items-center justify-center min-h-screen">
-
-  <!-- Navbar -->
-  <div class="navbar bg-primary text-white w-full">
-    <div class="flex-1">
-        <a class="btn btn-ghost normal-case text-xl">Buy / Sells Corner</a>
-    </div>
-    <div class="flex-none">
-        <select id="select" class="select select-bordered bg-primary text-white">
-            <option><a href="./login.html">Login</a></option>
-            <option><a href="./register.html">SignUp</a></option>
-            <option><a href="">Logout</a></option>
+  <body
+    class="bg-gray-400 flex flex-col items-center justify-center min-h-screen">
+    <!-- Navbar -->
+    <div class="navbar bg-primary text-white w-full">
+      <div class="flex-1">
+        <a class="normal-case text-xl font-bold font-serif"
+          >Buy / Sells Corner</a
+        >
+      </div>
+      <div class="flex-none text-x1 font-serif">
+        <select
+          id="select"
+          class="select select-bordered bg-primary text-white">
+          <option><a href="./login.html">Login</a></option>
+          <option><a href="./register.html">SignUp</a></option>
+          <option><a href="">Logout</a></option>
         </select>
+      </div>
     </div>
-</div>
 
-<!-- ------------------------------------------------------------- -->
-     
-                      <!-- Main Uploading form -->
+    <!-- ------------------------------------------------------------- -->
+
+    <!-- Main Uploading form -->
     <div class="w-5/6 max-w-lg font-bold mt-6 mb-6 text-center text-gray-800">
-        <div class="w-full h-full bg-white rounded-lg shadow-md p-6">      
-            
-            <h2 class="text-2xl font-bold mb-6 text-center text-gray-800">Post Ad</h2>
+      <div class="w-full h-full bg-white rounded-lg shadow-md p-6">
+        <h2 class="text-2xl font-bold mb-6 text-center text-gray-800">
+          Post Ad
+        </h2>
 
-            <form id="form">
-
-                <div class="mb-12">
-                    <div class="flex items-center justify-center w-full">
-                      <label class="flex flex-col items-center px-5 py-6 bg-blue-500 text-blue rounded-lg shadow-lg tracking-wide uppercase border border-black cursor-pointer hover:bg-blue-600 hover:text-white">
-                        <img id="image" class="flex justify-between w-1/2"  src="./Assets/Plus_rectangle.png" alt="image"> 
-                        <span class="mt-2 text-base leading-normal">Upload Product Photo</span>
-                        <input type="file" class="hidden" id="productPhoto" accept="image/*">
-                      </label>
-                    </div>
-                  </div>
-
-              <div class="mb-4">
-                <input id="title" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"  type="text" placeholder="Product Title">
-              </div>
-
-              <div class="mb-4">
-                <textarea id="description" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"  placeholder="Product Description" rows="4"></textarea>
-              </div>
-
-              <div class="mb-4">
-                <input id="price" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"  type="number" placeholder="Enter Price">
-              </div>
-
-              <div class="mb-6">
-                <input  id="fname" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" placeholder="Enter your Name">
-              </div>
-
-              
-              <div class="mb-6">
-                <input id="number" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"  type="tel" placeholder="Enter your Number">
-              </div>
-
-              <!-- Post Button -->
-              <div class="flex items-center justify-evenly">
-                <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
-                  Post Now
-                </button>
-              </div>
-            </form>
+        <form id="form">
+          <div class="mb-12">
+            <div class="flex items-center justify-center w-full">
+              <label
+                class="flex flex-col items-center px-5 py-6 bg-blue-500 text-blue rounded-lg shadow-lg tracking-wide uppercase border border-black cursor-pointer hover:bg-blue-600 hover:text-white">
+                <img
+                  id="image"
+                  class="flex justify-between w-1/2"
+                  src="./Assets/Plus_rectangle.png"
+                  alt="image" />
+                <span class="mt-2 text-base leading-normal"
+                  >Upload Product Photo</span
+                >
+                <input
+                  type="file"
+                  class="hidden"
+                  id="productPhoto"
+                  accept="image/*" />
+              </label>
+            </div>
           </div>
+
+          <div class="mb-4">
+            <input
+              id="title"
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              type="text"
+              placeholder="Product Title" />
+          </div>
+
+          <div class="mb-4">
+            <textarea
+              id="description"
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              placeholder="Product Description"
+              rows="4"></textarea>
+          </div>
+
+          <div class="mb-4">
+            <input
+              id="price"
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              type="number"
+              placeholder="Enter Price" />
+          </div>
+
+          <div class="mb-6">
+            <input
+              id="fname"
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              type="text"
+              placeholder="Enter your Name" />
+          </div>
+
+          <div class="mb-6">
+            <input
+              id="number"
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              type="tel"
+              placeholder="Enter your Number" />
+          </div>
+
+          <!-- Post Button -->
+          <div class="flex items-center justify-evenly">
+            <button
+              type="submit"
+              class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+              Post Now
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
 
-<!-- ------------------------------------------------------------- -->
+    <!-- ------------------------------------------------------------- -->
 
-    
-
-    <script type="module" src="post.js">
-
-    </script>
-</body>
+    <script type="module" src="post.js"></script>
+  </body>
 </html>

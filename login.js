@@ -1,5 +1,5 @@
 
-import { getAuth, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
+import { getAuth, signInWithEmailAndPassword  } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
 
 import {auth} from "./config.js"
 
@@ -19,7 +19,7 @@ form.addEventListener("submit" , (event)=>{
 
     const auth = getAuth();
 
-    signInWithCustomToken(auth, email.value , password.value)
+    signInWithEmailAndPassword(auth, email.value , password.value)
 
       .then((userCredential) => {
         const user = userCredential.user;

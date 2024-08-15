@@ -1,121 +1,139 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>register</title>
-  
-        <!-- Font awesome CDN -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    
-        <!-- Tailwind CDN -->
-        <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    
-        <!-- Daisyui CDN -->
-        <link href="https://cdn.jsdelivr.net/npm/daisyui@1.14.0/dist/full.css" rel="stylesheet">
 
+    <!-- Font awesome CDN -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
 
-</head>
+    <!-- Tailwind CDN -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet" />
 
-<body class="relative bg-gray-400 flex flex-col items-center h-full">
-    
+    <!-- Daisyui CDN -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@1.14.0/dist/full.css"
+      rel="stylesheet" />
+  </head>
 
-     <!-- Navbar -->
-
-  <div class="navbar bg-primary text-white w-full">
-    <div class="flex-1">
-        <a class="btn btn-ghost normal-case text-xl">Buy / Sells Corner</a>
-    </div>
-    <div class="flex-none">
-        <select id="select" class="select select-bordered bg-primary text-white">
-            <option><a href="./login.html">Login</a></option>
-            <option><a href="./re">SignUp</a></option>
-            <option><a href="">Logout</a></option>
+  <body class="relative bg-gray-400 flex flex-col items-center h-full">
+    <!-- Navbar -->
+    <div class="navbar bg-primary text-white w-full">
+      <div class="flex-1">
+        <a class="normal-case text-xl font-bold font-serif"
+          >Buy / Sells Corner</a
+        >
+      </div>
+      <div class="flex-none text-x1 font-serif">
+        <select
+          id="select"
+          class="select select-bordered bg-primary text-white">
+          <option><a href="./login.html">Login</a></option>
+          <option><a href="./register.html">SignUp</a></option>
+          <option><a href="">Logout</a></option>
         </select>
+      </div>
     </div>
-</div>
 
+    <!-- ------------------------------------------------------------- -->
 
-<!-- ------------------------------------------------------------- -->
-
-            <!-- Register form -->
+    <!-- Register form -->
     <div class="w-full max-w-lg mt-5">
-        <form id="form" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-            <h1 class="text-center text-2xl font-bold mb-4">Register</h1>
+      <form id="form" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+        <h1 class="text-center text-2xl font-bold mb-4">Register</h1>
 
+        <!-- First Name -->
+        <div class="mb-4">
+          <label class="block text-gray-700 text-sm font-bold mb-2" for="fname"
+            >First Name</label
+          >
+          <input
+            id="fname"
+            class="input input-bordered w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            type="text"
+            placeholder="First Name" />
+        </div>
 
-            <!-- First Name -->
-            <div class="mb-4">
-                <label class="block text-gray-700 text-sm font-bold mb-2" for="fname">First Name</label>
-                <input id="fname" class="input input-bordered w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" placeholder="First Name">
-            </div>
+        <!-- Last Name -->
+        <div class="mb-4">
+          <label class="block text-gray-700 text-sm font-bold mb-2" for="lname"
+            >Last Name</label
+          >
+          <input
+            id="lname"
+            class="input input-bordered w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            type="text"
+            placeholder="Last Name" />
+        </div>
 
+        <!-- Email -->
+        <div class="mb-4">
+          <label class="block text-gray-700 text-sm font-bold mb-2" for="email"
+            >Email</label
+          >
+          <input
+            id="email"
+            class="input input-bordered w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            type="email"
+            placeholder="Email" />
+        </div>
 
-            <!-- Last Name -->
-            <div class="mb-4">
-                <label class="block text-gray-700 text-sm font-bold mb-2" for="lname">Last Name</label>
-                <input id="lname" class="input input-bordered w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" placeholder="Last Name">
-            </div>
+        <!-- Password -->
+        <div class="mb-6">
+          <label
+            class="block text-gray-700 text-sm font-bold mb-2"
+            for="password"
+            >Password</label
+          >
+          <input
+            id="password"
+            class="input input-bordered w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+            type="password"
+            placeholder="******************" />
+        </div>
 
+        <!-- To Choose File -->
+        <div class="mb-6">
+          <label class="block text-gray-700 text-sm font-bold mb-2" for="file"
+            >Choose File</label
+          >
+          <input
+            type="file"
+            class="input input-bordered w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+            placeholder="Choose file" />
+        </div>
 
-            <!-- Email -->
-            <div class="mb-4">
-                <label class="block text-gray-700 text-sm font-bold mb-2" for="email">Email</label>
-                <input id="email" class="input input-bordered w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="email" placeholder="Email">
-            </div>
+        <!-- Register Button -->
+        <div class="flex items-center justify-center">
+          <button type="submit" class="btn btn-success w-full">Register</button>
+        </div>
 
+        <!-- Register with Google Button -->
+        <div class="flex items-center justify-center mt-7">
+          <button id="google-btn" class="btn btn-primary w-full">
+            <i class="fab fa-google mr-2"></i>Register with Google
+          </button>
+        </div>
 
-            <!-- Password -->
-            <div class="mb-6">
-                <label class="block text-gray-700 text-sm font-bold mb-2" for="password">Password</label>
-                <input id="password" class="input input-bordered w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" type="password" placeholder="******************">
-            </div>
-
-
-            <!-- To Choose File -->
-            <div class="mb-6">
-                <label class="block text-gray-700 text-sm font-bold mb-2" for="file">Choose File</label>
-                <input type="file" class="input input-bordered w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" placeholder="Choose file">
-            </div>
-
-
-            <!-- Register Button -->
-            <div class="flex items-center justify-center">
-                <button type="submit" class="btn btn-success w-full">Register</button>
-            </div>
-
-
-            <!-- Register with Google Button -->
-            <div class="flex items-center justify-center mt-7">
-                <button id="google-btn" class="btn btn-primary w-full">
-                    <i class="fab fa-google mr-2"></i>Register with Google
-                </button>
-            </div>
-
-            <!-- Already a User -->
-            <div class="flex items-center justify-center mt-5">
-                <a href="./login.html" class="link link-primary">Already a User? Login</a>
-            </div>
-        </form>
+        <!-- Already a User -->
+        <div class="flex items-center justify-center mt-5">
+          <a href="./login.html" class="link link-primary"
+            >Already a User? Login</a
+          >
+        </div>
+      </form>
     </div>
 
-  
-            <!-- Paragraph for signup error -->
-            <p id="para"  class="text-center text-gray-500 text-xs"></p>
-   
-<!-- ------------------------------------------------------------- -->
+    <!-- Paragraph for signup error -->
+    <p id="para" class="text-center text-gray-500 text-xs"></p>
 
-    <script type="module" src="register.js">
+    <!-- ------------------------------------------------------------- -->
 
-    </script>
-</body>
+    <script type="module" src="register.js"></script>
+  </body>
 </html>
-
-
-
-
-
-
-
-
-
