@@ -3,8 +3,6 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/fireba
 import {
   getAuth,
   createUserWithEmailAndPassword,
-  GoogleAuthProvider,
-  signInWithPopup,
 } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
 
 import { auth } from "./config.js";
@@ -19,15 +17,17 @@ const email = document.querySelector("#email");
 
 const password = document.querySelector("#password");
 
+const file = document.querySelector("#file");
+
 const display = document.querySelector("#para");
+
+
 
 form.addEventListener("submit", (event) => {
   event.preventDefault();
   const auth = getAuth();
   createUserWithEmailAndPassword(
     auth,
-    // fname.value,
-    // lname.value,
     email.value,
     password.value
   )
@@ -39,6 +39,7 @@ form.addEventListener("submit", (event) => {
       lname.value = "";
       email.value = "";
       password.value = "";
+      window.location = "login.html"
     })
 
     .catch((error) => {
@@ -52,26 +53,3 @@ form.addEventListener("submit", (event) => {
     });
 });
 
-// Goggle button :
-
-const gogglebtn = document.querySelector("#goggle-btn");
-
-gogglebtn.addEventListener("click", () => {
-  const provider = new GoogleAuthProvider();
-  const auth = getAuth();
-  signInWithPopup(auth, provider)
-    .then((result) => {
-      const credential = GoogleAuthProvider.credentialFromResult(result);
-      const token = credential.accessToken;
-      const user = result.user;
-      console.log(user);
-      window.location("./login.html");
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      console.log("Error Occured", errorMessage);
-      display.innerHTML = `${errorMessage}`;
-      // ...
-    });
-});

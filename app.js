@@ -111,7 +111,7 @@ function renderProducts() {
             <h2 class="card-title">Brand: ${items.brand}</h2>
             <p class="font-size-5"><b>Price: ${items.price}$</b></p>
             <div class="card-actions justify-center">
-                <button onclick="tologin()" class="btn btn-primary">Buy Product</button>
+                <button onclick="tologin()" class="btn btn-primary">Read More</button>
             </div>
         </div>
     </div>
