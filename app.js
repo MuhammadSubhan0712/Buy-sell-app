@@ -121,6 +121,7 @@ function renderProducts() {
 renderProducts();
 
 
+
 // function to go login page:
 function tologin() {
     window.location = "./login.html";
