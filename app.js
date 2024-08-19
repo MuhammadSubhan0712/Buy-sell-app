@@ -162,7 +162,7 @@ logout.addEventListener("click" , ()=>{
 
 
 
-// Function to render the products:
+// Async Function to render the products:
 async function renderProducts() {
   const querySnapshot = await getDocs(collection(db , "Product_Info"));
   querySnapshot.forEach((doc) =>{
@@ -192,10 +192,10 @@ async function renderProducts() {
 let cartItems = document.querySelector("#Cart");
 
 cartItems.forEach((btn , index) =>{
-  btn.addEventListener("click" , ()=>{
+  btn.addEventListener("click" , () => {
             localStorage.setItem("Product" , JSON.stringify(products[index]));
             window.location = "Cart.html";
-  })
-})
+  });
+});
 }
 renderProducts();
