@@ -1,4 +1,13 @@
-const products = [
+
+import { onAuthStateChanged, signOut, } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
+import { collection, getDocs, query, where } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
+import { auth, db } from "./config.js";
+
+
+
+
+
+let products = [
       {
         name: "Laptop",
         brand: "Dell XPS 13",
@@ -94,13 +103,74 @@ const products = [
         price: 1100
       }
     ];
-  display = document.querySelector("#div");
+
+ const  display = document.querySelector("#div");
+ const  Icon = document.querySelector("#usericon");
+ const  loginDiv = document.querySelector("#login-Div");
+const   logout = document.querySelector("#logout-btn");
+  
+
+   onAuthStateChanged(auth ,async (user) =>{
+    if (user) {
+      const uid = user.uid;
+      const q = query(collection(db , "users"),where("uid" , "==" , uid));
+      const querySnapshot = await getDocs(q);
+      querySnapshot.forEach((doc) => {
+        let data = doc.data()
+        Icon.src = data.Url
+      });
+    }
+    else {
+    console.log("User not login");
+    loginDiv.innerHTML = `<a href="./login.html"><button class="btn btn-primary">login</button></a>`
+    alert("To post ad you have to login first");
+    }
+   });
+  
+   Icon.addEventListener("click" , ()=>{
+    Swal.fire({
+      title: 'Success!',
+      text: 'Do you want to post Ad?',
+      confirmButtonText: 'Post Ad'
+  }) 
+  .then((result) =>{
+    if (result.isConfirmed) {
+      window.location = "post.html";
+    }
+  });
+  })
+
+
+logout.addEventListener("click" , ()=>{
+  signOut(auth).then(() =>{
+    Swal.fire({
+      title: 'Success!',
+      text: 'Logout Successfully',
+      icon: 'success',
+      confirmButtonText: 'Login'
+    })
+    .then((result) =>{
+      if (result.isConfirmed) {
+        window.location = "login.html";
+      }
+    });
+  }).catch((error) =>{
+    console.log(error);
+    
+  });
+});
+
+
 
 // Function to render the products:
-function renderProducts() {
+async function renderProducts() {
+  const querySnapshot = await getDocs(collection(db , "Product_Info"));
+  querySnapshot.forEach((doc) =>{
+    let data = doc.data()
+    products.push(data)
+  });
   display.innerHTML = " ";
-
-  products.map(items =>{
+  products.map((items , index) =>{
     display.innerHTML += `
         <div class="card w-96 border shadow-xl text-white left-5">
         <figure>
@@ -109,20 +179,23 @@ function renderProducts() {
         <div class="card-body">
             <h1 class="card-title">Name: ${items.name}</h1>
             <h2 class="card-title">Brand: ${items.brand}</h2>
+            <p class="card-title">Contact Seller: ${items.number}</p>
             <p class="font-size-5"><b>Price: ${items.price}$</b></p>
             <div class="card-actions justify-center">
-                <button onclick="tologin()" class="btn btn-primary">Read More</button>
+                <button id="Cart" class="btn btn-primary">Read More</button>
             </div>
         </div>
     </div>
     `
   });
+
+let cartItems = document.querySelector("#Cart");
+
+cartItems.forEach((btn , index) =>{
+  btn.addEventListener("click" , ()=>{
+            localStorage.setItem("Product" , JSON.stringify(products[index]));
+            window.location = "Cart.html";
+  })
+})
 }
 renderProducts();
-
-
-
-// function to go login page:
-function tologin() {
-    window.location = "./login.html";
-}
