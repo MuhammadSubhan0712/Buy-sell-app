@@ -39,7 +39,7 @@ form.addEventListener("submit" , (event)=>{
     })
         .then((result) => {
             if (result.isConfirmed) {
-                window.location = 'index.html'
+                window.location = 'post.html'
             }
         });
     });

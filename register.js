@@ -15,7 +15,6 @@ import { auth , db } from "./config.js";
 const storage = getStorage();
 
 
-
 // Decleares variables for all html elements:
 const form = document.querySelector("#form");
 
@@ -67,19 +66,14 @@ form.addEventListener("submit", (event) => {
   })
       .then((result) => {
           if (result.isConfirmed) {
-              window.location = "./login.html";
+              window.location = "login.html";
           }
       });
     })
 
     .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-
-      console.log(errorCode);
-      console.log(errorMessage);
-
-      display.innerHTML = `${errorMessage}`;
+      console.log(error);
+      display.innerHTML = `${error}`;
     });
   });
 

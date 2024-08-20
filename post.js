@@ -46,6 +46,7 @@ onAuthStateChanged(auth, async (user) => {
 });
 
 
+
 form.addEventListener("submit", async event => {
     event.preventDefault()
     postbtn.innerHTML = `<img class="loading" src="./Assets/loading-645268_1280.webp" alt="">`
@@ -70,7 +71,7 @@ form.addEventListener("submit", async event => {
         })
             .then((result) => {
                 if (result.isConfirmed) {
-                    window.location = './index.html'
+                    window.location = 'index.html'
                 }
             });
 
