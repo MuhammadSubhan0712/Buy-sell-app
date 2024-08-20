@@ -15,7 +15,6 @@ const  password = document.querySelector("#password");
 const loginbtn = document.querySelector("#login-btn");
 
 
-
 // Event Listener for login form 
 form.addEventListener("submit" , (event)=>{
     event.preventDefault();
