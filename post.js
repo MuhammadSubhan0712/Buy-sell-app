@@ -47,7 +47,6 @@ onAuthStateChanged(auth, async (user) => {
 
 
 
-
 form.addEventListener("submit", async event => {
     event.preventDefault()
     postbtn.innerHTML = `<img class="loading" src="./Assets/Images/load-37_256.gif" alt="">`
@@ -77,13 +76,11 @@ form.addEventListener("submit", async event => {
                 }
             });
 
-        // console.log("Document written with ID: ", docRef.id);
+        console.log("Document written with ID: ", docRef.id);
     } catch (e) {
         console.error("Error adding document: ", e);
     }
 })
-
-
 
 
 async function uploadFile(file, userEmail) {

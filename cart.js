@@ -32,9 +32,9 @@ function render() {
         pdescription.innerHTML = getdata.Product_Description,
         pprice.innerHTML = getDocs.Price,
         userName.innerHTML = getDocs.UserName,
-        phone_number.innerHTML = getDocs.phone_number,
+        phone_number.innerHTML = getDocs.phone_number
 }
-render();
+render()
 
 
 
