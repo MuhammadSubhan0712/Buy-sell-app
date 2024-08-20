@@ -46,7 +46,6 @@ onAuthStateChanged(auth, async (user) => {
 });
 
 
-
 form.addEventListener("submit", async event => {
     event.preventDefault()
     postbtn.innerHTML = `<img class="loading" src="./Assets/loading-645268_1280.webp" alt="">`
