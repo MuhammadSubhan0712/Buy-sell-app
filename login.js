@@ -4,6 +4,7 @@ import { getAuth, signInWithEmailAndPassword  } from "https://www.gstatic.com/fi
 import {auth} from "./config.js"
 
 
+
 // declares variables HTML elements
 let form = document.querySelector("#form");
 
@@ -12,6 +13,7 @@ let email = document.querySelector("#email");
 let password = document.querySelector("#password");
 
 let  display = document.querySelector("#para");
+
 
 
 // Event Listener for login form 
