@@ -118,13 +118,12 @@ const   logout = document.querySelector("#logout-btn");
       const querySnapshot = await getDocs(q);
       querySnapshot.forEach((doc) => {
         let data = doc.data()
-        Icon.src = data.Url
+        Icon.src = data.url
       });
     }
     else {
     console.log("User not login");
     loginDiv.innerHTML = `<a href="./login.html"><button class="btn btn-primary">login</button></a>`
-    alert("To post ad you have to login first");
     }
    });
   

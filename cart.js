@@ -17,7 +17,7 @@ let userName = document.querySelector('#fname');
 let pimage = document.querySelector('#image');
 let pprice = document.querySelector('#price');
 let pdescription = document.querySelector('#description');
-
+let CartDiv = document.querySelector("#Card-Div");
 
 
 
@@ -33,6 +33,19 @@ function render() {
         pprice.innerHTML = getDocs.Price,
         userName.innerHTML = getDocs.UserName,
         phone_number.innerHTML = getDocs.phone_number
+        CartDiv.innerHTML += `  
+        
+        <figure class="px-10 pt-10">
+        <img src="https://via.placeholder.com/150x150/1E3A8A/FFFFFF?text=XD+Logo" alt="XD Logo" class="w-full h-48 object-cover">
+        </figure>
+        <div class="card-body text-center">
+            <h2 class="card-title text-blue-800">XD Blue Black White Theme</h2>
+            <p class="text-gray-700">This is a simple card demonstrating the use of a blue, black, and white color theme with DaisyUI.</p>
+            <div class="card-actions justify-center mt-4">
+                <button class="btn btn-primary bg-blue-800 border-blue-800 text-white">Primary Action</button>
+                <button class="btn btn-outline border-gray-700 text-gray-700 hover:bg-blue-800 hover:text-white">Secondary Action</button>
+            </div>
+        </div>`
 }
 render()
 

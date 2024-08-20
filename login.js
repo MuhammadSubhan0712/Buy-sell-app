@@ -27,7 +27,10 @@ form.addEventListener("submit" , (event)=>{
         const user = userCredential.user;
         console.log(user);
       })
-
+      .catch((error) => {
+        const errorMessage = error.message;
+        console.log("Error====>",errorMessage);
+  
       Swal.fire({
         title: 'Success!',
         text: 'Your are Login Successfully',
@@ -39,13 +42,8 @@ form.addEventListener("submit" , (event)=>{
                 window.location = 'index.html'
             }
         });
-    })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log("Error====>",errorMessage);
-        alert(errorMessage);    
-      });
+    });
+});
 
 
 
