@@ -41,7 +41,7 @@ onAuthStateChanged(auth, async (user) => {
     } else {
         console.log('user is not here');
         loginDiv.innerHTML = `<a href="./login.html"><button class="btn btn-primary">login</button></a>`
-        !user ? window.location = './login.html' : console.log('user present ');
+        !user ? window.location = 'login.html' : console.log('user present');
     }
 });
 
@@ -49,8 +49,7 @@ onAuthStateChanged(auth, async (user) => {
 
 form.addEventListener("submit", async event => {
     event.preventDefault()
-    postbtn.innerHTML = `<img class="loading" src="./Assets/Images/load-37_256.gif" alt="">`
-
+    postbtn.innerHTML = `<img class="loading" src="./Assets/loading-645268_1280.webp" alt="">`
     let file = pimage.files[0]
     let url = await uploadFile(file, `${uid} + ${Date.now()}`)
 
@@ -65,7 +64,7 @@ form.addEventListener("submit", async event => {
         });
 
         Swal.fire({
-            title: 'Ad successfully publish',
+            title: 'Ad successfully publish :)',
             text: 'See Your Ad',
             icon: 'success',
             confirmButtonText: 'See ad'
@@ -100,18 +99,18 @@ async function uploadFile(file, userEmail) {
 logoutbtn.addEventListener('click', () => {
     signOut(auth).then(() => {
         Swal.fire({
-            title: 'Success!',
+            title: 'Success :)',
             text: 'Log-out Successfully',
             icon: 'success',
             confirmButtonText: 'Login'
         })
             .then((result) => {
                 if (result.isConfirmed) {
-                    window.location = './login.html'
+                    window.location = 'login.html'
                 }
             });
-        // window.location = './login.html'
     }).catch((error) => {
-        // An error happened.
+        console.log(error);
+        
     });
 })

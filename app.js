@@ -5,8 +5,6 @@ import { auth, db } from "./config.js";
 
 
 
-
-
 let products = [
       {
         image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTAJZfuMV284pegBzgftQTbNwojzYziV3Y4Og&s",
@@ -105,11 +103,10 @@ let products = [
     ];
 
     // Declares variables of HTML elements
- const  display = document.querySelector("#div");
- const  Icon = document.querySelector("#usericon");
- const  loginDiv = document.querySelector("#login-Div");
+const  display = document.querySelector("#div");
+const  Icon = document.querySelector("#usericon");
+const  loginDiv = document.querySelector("#login-Div");
 const   logout = document.querySelector("#logout-btn");
-  
 
    onAuthStateChanged(auth ,async (user) =>{
     if (user) {
@@ -129,7 +126,7 @@ const   logout = document.querySelector("#logout-btn");
   
    Icon.addEventListener("click" , ()=>{
     Swal.fire({
-      title: 'Success!',
+      title: 'Success :)',
       text: 'Do you want to post Ad?',
       confirmButtonText: 'Post Ad'
   }) 
@@ -144,7 +141,7 @@ const   logout = document.querySelector("#logout-btn");
 logout.addEventListener("click" , ()=>{
   signOut(auth).then(() =>{
     Swal.fire({
-      title: 'Success!',
+      title: 'Success :)',
       text: 'Logout Successfully',
       icon: 'success',
       confirmButtonText: 'Login'
@@ -174,10 +171,10 @@ async function renderProducts() {
     display.innerHTML += `
         <div class="card w-96 border shadow-xl text-white left-5">
         <figure>
-            <img src="${items.image}" alt="Sample Image" class="w-full h-48 object-cover">
+            <img id="image" src="${items.image}" alt="Sample Image" class="w-full h-48 object-cover">
         </figure>
         <div class="card-body">
-            <h1 id="cart-title" class="card-title">title: ${items.title}</h1>
+            <h1 id="cart-title" class="card-title">Title: ${items.title}</h1>
             <h2  id="cart-brand"  class="card-title">Brand: ${items.Description}</h2>
             <p id="number" class="card-title">Contact Seller: ${items.number}</p>
             <p  id="price"  class="font-size-5"><b>Price: ${items.price}$</b></p>
@@ -187,15 +184,14 @@ async function renderProducts() {
         </div>
     </div>
     `
-  });
 
-let cartItems = document.querySelector("#Cart");
-
-cartItems.forEach((btn , index) =>{
+let Cart = document.querySelectorAll("#Cart");
+Cart.forEach((btn , index) => {
   btn.addEventListener("click" , () => {
             localStorage.setItem("Product" , JSON.stringify(products[index]));
             window.location = "Cart.html";
-  });
-});
+  })
+})
+})
 }
 renderProducts();

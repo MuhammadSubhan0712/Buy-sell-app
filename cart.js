@@ -11,7 +11,6 @@ import { auth, db } from "./config.js";
 let logoutBtn = document.querySelector('#logout-btn');
 let Icon = document.querySelector('#usericon');
 let ptitle = document.querySelector('#title');
-let user_image = document.querySelector('#user_image');
 let phone_number = document.querySelector('#number');
 let userName = document.querySelector('#fname');
 let pimage = document.querySelector('#image');
@@ -21,13 +20,13 @@ let CartDiv = document.querySelector("#Card-Div");
 
 
 
-let getdata = JSON.parse(localStorage.getItem("Products"));
+let getdata = JSON.parse(localStorage.getItem("Product"));
 
 console.log(getdata);
 
 
 function render() {
-        pimage.src = getdata.productImage,
+        pimage.src = getdata.pimage,
         ptitle.innerHTML =  getdata.Product_title,
         pdescription.innerHTML = getdata.Product_Description,
         pprice.innerHTML = getDocs.Price,
@@ -36,19 +35,21 @@ function render() {
         CartDiv.innerHTML += `  
         
         <figure class="px-10 pt-10">
-        <img src="https://via.placeholder.com/150x150/1E3A8A/FFFFFF?text=XD+Logo" alt="XD Logo" class="w-full h-48 object-cover">
+        <img id="image" src="${pimage}" alt="XD Logo" class="w-full h-48 object-cover">
         </figure>
         <div class="card-body text-center">
-            <h2 class="card-title text-blue-800">XD Blue Black White Theme</h2>
-            <p class="text-gray-700">This is a simple card demonstrating the use of a blue, black, and white color theme with DaisyUI.</p>
+            <h2 class="card-title text-blue-800">Title: ${ptitle}</h2>
+            <h2 class="card-title text-blue-800">Description: ${pdescription}</h2>
+            <h2 class="card-title text-blue-800">Price: ${pprice}</h2>
+            <h3 class="card-title text-blue-800">Seller Name: ${userName}</h3>
+            <h3 class="card-title text-blue-800">Seller Contact: ${phone_number}</h3>
             <div class="card-actions justify-center mt-4">
-                <button class="btn btn-primary bg-blue-800 border-blue-800 text-white">Primary Action</button>
-                <button class="btn btn-outline border-gray-700 text-gray-700 hover:bg-blue-800 hover:text-white">Secondary Action</button>
+                <button class="btn btn-primary bg-blue-800 border-blue-800 text-white">Buy Product</button>
+                <button class="btn btn-outline border-gray-700 text-gray-700 hover:bg-blue-800 hover:text-white">Exit</button>
             </div>
         </div>`
 }
 render()
-
 
 
 
@@ -60,8 +61,7 @@ onAuthStateChanged(auth, async (user) => {
         const querySnapshot = await getDocs(q);
         querySnapshot.forEach((doc) => {
             let data = doc.data()
-            userIcon.src = data.photoUrl
-            // user_image.src = data.photoUrl
+            Icon.src = data.photoUrl
         });
 
     } else {
@@ -73,11 +73,10 @@ onAuthStateChanged(auth, async (user) => {
         })
             .then((result) => {
                 if (result.isConfirmed) {
-                    window.location = '../index.html'
+                    window.location = 'index.html'
                 }
             });
         
-        // loginDiv.innerHTML = `<a href="./login.html"><button class="btn btn-dark">login</button></a>`
     }
 });
 
@@ -91,24 +90,21 @@ onAuthStateChanged(auth, async (user) => {
         const querySnapshot = await getDocs(q);
         querySnapshot.forEach((doc) => {
             let data = doc.data()
-            userIcon.src = data.photoUrl
-            // user_image.src = data.photoUrl
+            Icon.src = data.photoUrl
         });
 
     } else {
         Swal.fire({
-            title: 'Setting!',
+            title: '!Setting!',
             text: 'Please Login First',
             confirmButtonText: 'Login',
             icon: 'error',
         })
             .then((result) => {
                 if (result.isConfirmed) {
-                    window.location = '../index.html'
+                    window.location = 'index.html'
                 }
             });
-        
-        // loginDiv.innerHTML = `<a href="./login.html"><button class="btn btn-dark">login</button></a>`
     }
 });
 
@@ -116,7 +112,7 @@ onAuthStateChanged(auth, async (user) => {
 
 Icon.addEventListener('click', () => {
     Swal.fire({
-        title: 'Setting!',
+        title: '!Setting!',
         text: 'Do you want to Ad post',
         confirmButtonText: 'Ad Post'
     })
@@ -134,7 +130,7 @@ Icon.addEventListener('click', () => {
 logoutBtn.addEventListener('click', () => {
     signOut(auth).then(() => {
         Swal.fire({
-            title: 'Success!',
+            title: 'Success :)',
             text: 'Log-out Successfully',
             icon: 'success',
             confirmButtonText: 'Login'
@@ -145,6 +141,6 @@ logoutBtn.addEventListener('click', () => {
                 }
             });
     }).catch((error) => {
-        // An error happened.
+        console.log(error);
     });
 })
