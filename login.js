@@ -23,12 +23,23 @@ form.addEventListener("submit" , (event)=>{
     const auth = getAuth();
 
     signInWithEmailAndPassword(auth, email.value , password.value)
-
       .then((userCredential) => {
+        
         const user = userCredential.user;
         console.log(user);
-        window.location = "index.html";
       })
+      Swal.fire({
+        title: 'Success!',
+        text: 'Your are Login Successfully',
+        icon: 'success',
+        confirmButtonText: 'Login'
+    })
+        .then((result) => {
+            if (result.isConfirmed) {
+                window.location = 'index.html'
+            }
+        });
+    })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
