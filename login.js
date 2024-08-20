@@ -27,6 +27,7 @@ form.addEventListener("submit" , (event)=>{
         const user = userCredential.user;
         console.log(user);
       })
+
       Swal.fire({
         title: 'Success!',
         text: 'Your are Login Successfully',
