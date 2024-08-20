@@ -42,7 +42,6 @@ form.addEventListener("submit", (event) => {
     email.value,
     password.value
   )
-
     .then(async(userCredential) => {
       const user = userCredential.user;
       console.log(user);
