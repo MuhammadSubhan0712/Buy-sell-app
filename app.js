@@ -104,6 +104,7 @@ let products = [
       }
     ];
 
+    // Declares variables of HTML elements
  const  display = document.querySelector("#div");
  const  Icon = document.querySelector("#usericon");
  const  loginDiv = document.querySelector("#login-Div");
@@ -177,10 +178,10 @@ async function renderProducts() {
             <img src="${items.image}" alt="Sample Image" class="w-full h-48 object-cover">
         </figure>
         <div class="card-body">
-            <h1 class="card-title">Name: ${items.name}</h1>
-            <h2 class="card-title">Brand: ${items.brand}</h2>
-            <p class="card-title">Contact Seller: ${items.number}</p>
-            <p class="font-size-5"><b>Price: ${items.price}$</b></p>
+            <h1 id="cart-title" class="card-title">Name: ${items.name}</h1>
+            <h2  id="cart-brand"  class="card-title">Brand: ${items.brand}</h2>
+            <p id="number" class="card-title">Contact Seller: ${items.number}</p>
+            <p  id="price"  class="font-size-5"><b>Price: ${items.price}$</b></p>
             <div class="card-actions justify-center">
                 <button id="Cart" class="btn btn-primary">Read More</button>
             </div>

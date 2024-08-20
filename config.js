@@ -5,6 +5,7 @@
   import { getFirestore  } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
 
 
+  
   const firebaseConfig = {
     apiKey: "AIzaSyBGMrQHpyvsGowbqNVy-KJIJt4ekmRCApI",
     authDomain: "olx-clone-13521.firebaseapp.com",
