@@ -184,7 +184,6 @@ async function renderProducts() {
         </div>
     </div>
     `
-
 let Cart = document.querySelectorAll("#Cart");
 Cart.forEach((btn , index) => {
   btn.addEventListener("click" , () => {
