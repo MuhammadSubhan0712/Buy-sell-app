@@ -1,65 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Blue Black White Card</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/daisyui@2.13.0/dist/full.css" rel="stylesheet">
-</head>
-<body class="bg-base-200 flex flex-col justify-center min-h-screen">
-
-
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@2.13.0/dist/full.css"
+      rel="stylesheet" />
+  </head>
+  <body class="bg-base-200 flex flex-col justify-center min-h-screen">
     <!-- Navbar -->
     <div class="navbar bg-primary text-white w-full">
-        <div class="flex-1">
-          <p class="normal-case text-xl font-bold font-serif"
-            >Buy / Sells Corner</p>
-        </div>
-  
-        <div class="flex-none text-x1 font-serif">
-  
-            <img id="usericon" class="w-12 h-12 rounded-full"
-            src="https://wallpapers.com/images/featured/plain-black-background-02fh7564l8qq4m6d.jpg"
-            alt="blackimg">
-  
-          <div id="login-Div"> 
-          <button id="logout-btn" class="btn btn-primary">
-          logout
-          </button>
-           </div>
-        </div>
+      <div class="flex-1">
+        <p class="normal-case text-xl font-bold font-serif">
+          Buy / Sells Corner
+        </p>
       </div>
 
-      <!-- ------------------------------------------------------------------------ -->
+      <div class="flex-none text-x1 font-serif">
+        <img
+          id="usericon"
+          class="w-12 h-12 rounded-full"
+          src="https://wallpapers.com/images/featured/plain-black-background-02fh7564l8qq4m6d.jpg"
+          alt="blackimg" />
 
-
-      <div class="flex flex-col p-5">
-        <!-- Products Details Heading -->
-        <div class="mb-12 p-5">
-          <h1 class="text-4xl font-bold text-gray-500">Products Details</h1>
+        <div id="login-Div">
+          <button id="logout-btn" class="btn btn-primary">logout</button>
         </div>
-  
-    <!-- Card -->
-    <div id="Cart-Div" class="card w-96 bg-base-100 shadow-xl ">
-      
-    </div>
+      </div>
     </div>
 
-<!-- ------------------------------------------------------------- -->
-               
+    <!-- ------------------------------------------------------------------------ -->
 
-              <!-- Sweet Alert Script -->
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <div class="flex flex-col p-5">
+      <!-- Products Details Heading -->
+      <div class="mb-12 p-5">
+        <h1 class="text-4xl font-bold text-gray-500">Products Details</h1>
+      </div>
 
+      <!-- Card -->
+      <div id="Cart-Div" class="card w-96 bg-base-100 shadow-xl"></div>
+    </div>
 
-                <!-- Tailwind Script  -->
-<script src="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.js"></script>
+    <!-- ------------------------------------------------------------- -->
 
+    <!-- Sweet Alert Script -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-               <!-- Script tag -->
-        <script type="module" src="cart.js">
+    <!-- Tailwind Script  -->
+    <script src="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.js"></script>
 
-    </script>
-</body>
+    <!-- Script tag -->
+    <script type="module" src="cart.js"></script>
+  </body>
 </html>
