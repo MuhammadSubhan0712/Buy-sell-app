@@ -73,7 +73,7 @@ form.addEventListener("submit", async event => {
                 if (result.isConfirmed) {
                     window.location = 'index.html'
                 }
-            });
+            })
 
         console.log("Document written with ID: ", docRef.id);
     } catch (e) {
