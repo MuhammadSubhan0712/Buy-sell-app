@@ -6,13 +6,13 @@ import {auth} from "./config.js"
 
 
 // declares variables HTML elements
-let form = document.querySelector("#form");
+const  form = document.querySelector("#form");
 
-let email = document.querySelector("#email");
+const email = document.querySelector("#email");
 
-let password = document.querySelector("#password");
+const  password = document.querySelector("#password");
 
-let  display = document.querySelector("#para");
+const loginbtn = document.querySelector("#login-btn");
 
 
 
@@ -24,7 +24,7 @@ form.addEventListener("submit" , (event)=>{
 
     signInWithEmailAndPassword(auth, email.value , password.value)
       .then((userCredential) => {
-        
+        loginbtn.innerHTML = `<img class="loading" src="./Assets/loading-645268_1280.webp" alt="">`
         const user = userCredential.user;
         console.log(user);
       })
@@ -46,6 +46,6 @@ form.addEventListener("submit" , (event)=>{
         console.log("Error====>",errorMessage);
         alert(errorMessage);    
       });
-})
+
 
 
