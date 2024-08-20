@@ -4,7 +4,6 @@ import { collection, addDoc } from "https://www.gstatic.com/firebasejs/10.12.5/f
 
 import { getStorage , ref , uploadBytes , getDownloadURL  } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-storage.js";
 
-
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -33,6 +32,7 @@ const Pic = document.querySelector("#file");
 const display = document.querySelector("#para");
 
 
+
 // Event listener for registration form:
 form.addEventListener("submit", (event) => {
   event.preventDefault();
@@ -42,6 +42,7 @@ form.addEventListener("submit", (event) => {
     email.value,
     password.value
   )
+
     .then(async(userCredential) => {
       const user = userCredential.user;
       console.log(user);
@@ -50,6 +51,7 @@ form.addEventListener("submit", (event) => {
       lname.value = "";
       email.value = "";
       password.value = "";
+
 
      let file = Pic.file[0];
      let Url = null
