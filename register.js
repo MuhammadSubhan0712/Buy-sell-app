@@ -4,14 +4,17 @@ import { collection, addDoc } from "https://www.gstatic.com/firebasejs/10.12.5/f
 
 import { getStorage , ref , uploadBytes , getDownloadURL  } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-storage.js";
 
+
 import {
   getAuth,
   createUserWithEmailAndPassword,
 } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
 
+
 import { auth , db } from "./config.js";
 
 const storage = getStorage();
+
 
 
 // Decleares variables for all html elements:
