@@ -21,112 +21,69 @@
       rel="stylesheet" />
   </head>
 
-  <body class="relative bg-gray-400 flex flex-col items-center h-full">
+  <body class="bg-base-300 flex flex-col items-center min-h-screen">
     <!-- Navbar -->
-    <div class="navbar bg-primary text-white w-full">
-      <div class="flex-1">
-        <a class="normal-case text-xl font-bold font-serif"
-          >Buy / Sells Corner</a
-        >
-      </div>
-      <div class="flex-none text-x1 font-serif">
-       <button><a href="./login.html">Login</a></button>
-      </div>
+    <div class="navbar bg-primary text-white w-full px-4 py-2 flex justify-between">
+        <a class="text-xl font-bold font-serif">Buy / Sell Corner</a>
+        <a href="./login.html" class="btn btn-outline btn-sm">Login</a>
     </div>
 
-    <!-- ------------------------------------------------------------- -->
+    <!-- Register Form -->
+    <div class="w-full max-w-lg mt-10">
+        <form id="form" class="bg-white shadow-lg rounded-lg px-8 pt-6 pb-8">
+            <h1 class="text-center text-2xl font-bold mb-4">Register</h1>
 
-    <!-- Register form -->
-    <div class="w-full max-w-lg mt-5">
-      <form id="form" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-        <h1 class="text-center text-2xl font-bold mb-4">Register</h1>
+            <!-- First Name -->
+            <div class="mb-4">
+                <label for="fname" class="block text-gray-700 text-sm font-bold mb-2">First Name</label>
+                <input id="fname" type="text" class="input input-bordered w-full" placeholder="First Name" />
+            </div>
 
-        <!-- First Name -->
-        <div class="mb-4">
-          <label class="block text-gray-700 text-sm font-bold mb-2" for="fname"
-            >First Name</label
-          >
-          <input
-            id="fname"
-            class="input input-bordered w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            type="text"
-            placeholder="First Name" />
-        </div>
+            <!-- Last Name -->
+            <div class="mb-4">
+                <label for="lname" class="block text-gray-700 text-sm font-bold mb-2">Last Name</label>
+                <input id="lname" type="text" class="input input-bordered w-full" placeholder="Last Name" />
+            </div>
 
-        <!-- Last Name -->
-        <div class="mb-4">
-          <label class="block text-gray-700 text-sm font-bold mb-2" for="lname"
-            >Last Name</label
-          >
-          <input
-            id="lname"
-            class="input input-bordered w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            type="text"
-            placeholder="Last Name" />
-        </div>
+            <!-- Email -->
+            <div class="mb-4">
+                <label for="email" class="block text-gray-700 text-sm font-bold mb-2">Email</label>
+                <input id="email" type="email" class="input input-bordered w-full" placeholder="Email" />
+            </div>
 
-        <!-- Email -->
-        <div class="mb-4">
-          <label class="block text-gray-700 text-sm font-bold mb-2" for="email"
-            >Email</label
-          >
-          <input
-            id="email"
-            class="input input-bordered w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            type="email"
-            placeholder="Email" />
-        </div>
+            <!-- Password -->
+            <div class="mb-6">
+                <label for="password" class="block text-gray-700 text-sm font-bold mb-2">Password</label>
+                <input id="password" type="password" class="input input-bordered w-full" placeholder="Enter Password" />
+            </div>
 
-        <!-- Password -->
-        <div class="mb-6">
-          <label
-            class="block text-gray-700 text-sm font-bold mb-2"
-            for="password"
-            >Password</label
-          >
-          <input
-            id="password"
-            class="input input-bordered w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-            type="password"
-            placeholder="******************" />
-        </div>
+            <!-- File Upload -->
+            <div class="mb-6">
+                <label for="file" class="block text-gray-700 text-sm font-bold mb-2">Choose File</label>
+                <input id="file" type="file" class="input input-bordered w-full" />
+            </div>
 
-        <!-- To Choose File -->
-        <div class="mb-6">
-          <label class="block text-gray-700 text-sm font-bold mb-2" for="file"
-            >Choose File</label
-          >
-          <input
-            type="file"
-            id="file"
-            class="input input-bordered w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-            placeholder="Choose file" />
-        </div>
+            <!-- Register Button -->
+            <div class="flex items-center justify-center">
+                <button type="submit" class="btn btn-success w-full">Register</button>
+            </div>
 
-        <!-- Register Button -->
-        <div class="flex items-center justify-center">
-          <button type="submit" class="btn btn-success w-full">Register</button>
-        </div>
+            <!-- Register with Google -->
+            <div class="flex items-center justify-center mt-7">
+                <button id="google-btn" class="btn btn-primary w-full">
+                    <i class="fab fa-google mr-2"></i> Register with Google
+                </button>
+            </div>
 
-        <!-- Register with Google Button -->
-        <div class="flex items-center justify-center mt-7">
-          <button id="google-btn" class="btn btn-primary w-full">
-            <i class="fab fa-google mr-2"></i>Register with Google
-          </button>
-        </div>
-
-        <!-- Already a User -->
-        <div class="flex items-center justify-center mt-5">
-          <a href="./login.html" class="link link-primary"
-            >Already a User? Login</a
-          >
-        </div>
-      </form>
+            <!-- Already a User -->
+            <div class="text-center mt-5">
+                <a href="./login.html" class="link link-primary">Already a User? Login</a>
+            </div>
+        </form>
     </div>
 
-    <!-- Paragraph for signup resolve / reject -->
-    <p id="para" class="text-center text-gray-500 text-xs"></p>
-
+    <!-- Signup Status Message -->
+    <p id="para" class="text-center text-gray-500 text-xs mt-4"></p>
     <!-- ------------------------------------------------------------- -->
 
 

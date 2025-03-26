@@ -23,14 +23,10 @@ form.addEventListener("submit" , (event)=>{
 
     signInWithEmailAndPassword(auth, email.value , password.value)
       .then((userCredential) => {
-        loginbtn.innerHTML = `<img class="loading" src="./Assets/loading-645268_1280.webp" alt="">`
+        loginbtn.innerHTML = `<img class="w-48 h-36" src="./Assets/loading-645268_1280.webp" alt="">`
         const user = userCredential.user;
         console.log(user);
       })
-      .catch((error) => {
-        const errorMessage = error.message;
-        console.log("Error====>",errorMessage);
-  
       Swal.fire({
         title: 'Success!',
         text: 'Your are Login Successfully',
@@ -41,7 +37,10 @@ form.addEventListener("submit" , (event)=>{
             if (result.isConfirmed) {
                 window.location = 'post.html'
             }
-        });
+      })
+      .catch((error) => {
+        const errorMessage = error.message;
+        console.log("Error====>",errorMessage);
     });
 });
 
