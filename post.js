@@ -79,13 +79,12 @@ form.addEventListener("submit", async (event) => {
     if (!file) {
       throw new Error("Please select an image file");
     }
-  } catch (error) {}
+   
 
   const filePath = `products/${currentUserUid}_${Date.now()}`;
 
   let imageUrl = await uploadFile(file, filePath);
 
-  try {
     const docRef = await addDoc(collection(db, "product_details"), {
       productImage: imageUrl,
       Product_title: ptitle.value,
@@ -93,53 +92,71 @@ form.addEventListener("submit", async (event) => {
       Price: Number(price.value), //convert to number;
       UserName: fname.value,
       phone_number: contact.value,
+      createdAt: new Date(),
+      uid: currentUserUid,
     });
 
-    Swal.fire({
+    await Swal.fire({
       title: "Ad successfully publish :)",
       text: "See Your Ad",
       icon: "success",
       confirmButtonText: "See ad",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        window.location = "index.html";
-      }
     });
-
+    
+    window.location = "index.html";
     console.log("Document written with ID: ", docRef.id);
-  } catch (e) {
-    console.error("Error adding document: ", e);
-  }
+
+  } catch (error) {
+    console.error("Error adding document:", error);
+    await Swal.fire({
+        title: 'Error!',
+        text: error.message || 'Failed to publish ad. Please try again.',
+        icon: 'error',
+        confirmButtonText: 'OK'
+    });
+}finally {
+    postbtn.innerHTML = `Post Now`;
+    postbtn.disabled = false;
+}
 });
 
-async function uploadFile(file, userEmail) {
-  const storageRef = ref(storage, userEmail);
+async function uploadFile(file, filePath) {
+
+    if (!file) {
+        throw new Error ("No file selected");
+    }
+  const storageRef = ref(storage, filePath);
   try {
-    const uploadImg = await uploadBytes(storageRef, file);
-    const url = await getDownloadURL(uploadImg.ref);
-    return url;
+    const uploadResult = await uploadBytes(storageRef, file);
+    return await getDownloadURL(uploadResult.ref);
+    
   } catch (error) {
-    console.error(error);
-    throw error;
+    console.error("Upload error: ",error);
+    throw new Error("Failed to upload image. Please try again.");
   }
 }
 
 // logout function
-logoutbtn.addEventListener("click", () => {
-  signOut(auth)
-    .then(() => {
-      Swal.fire({
+logoutbtn.addEventListener("click", async () => {
+
+    try {
+    signOut(auth);
+    const result = await Swal.fire({
         title: "Success :)",
         text: "Log-out Successfully",
         icon: "success",
         confirmButtonText: "Login",
-      }).then((result) => {
-        if (result.isConfirmed) {
-          window.location = "login.html";
-        }
       });
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+      
+      if (result.isConfirmed) {
+        window.location = "login.html";
+      }
+
+    } catch (error) {
+        console.error("Logout error:", error);
+        await Swal.fire({
+            
+        })
+    }
+ 
 });
