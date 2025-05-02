@@ -26,12 +26,10 @@ const contact  = document.querySelector("#number");
 const postbtn =  document.querySelector("#Post-Now");
 
 
-
-
 // check user status user login or not
 onAuthStateChanged(auth, async (user) => {
     if (user) {
-        uid = user.uid;
+        const uid = user.uid;
         const q = query(collection(db, "users"), where("uid", "==", uid));
         const querySnapshot = await getDocs(q);
         querySnapshot.forEach((doc) => {
@@ -44,8 +42,6 @@ onAuthStateChanged(auth, async (user) => {
         !user ? window.location = 'login.html' : console.log('user present');
     }
 });
-
-
 
 form.addEventListener("submit", async event => {
     event.preventDefault()
