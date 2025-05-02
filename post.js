@@ -1,10 +1,19 @@
-import { collection, getDocs, query, where, addDoc } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
-import { onAuthStateChanged, signOut, } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
 import {
-    uploadBytes,
-    getDownloadURL,
-    ref,
-    getStorage
+  collection,
+  getDocs,
+  query,
+  where,
+  addDoc,
+} from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
+import {
+  onAuthStateChanged,
+  signOut,
+} from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
+import {
+  uploadBytes,
+  getDownloadURL,
+  ref,
+  getStorage,
 } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-storage.js";
 
 import { auth, db } from "./config.js";
@@ -18,109 +27,119 @@ const display = document.querySelector("#div");
 const Icon = document.querySelector("#usericon");
 const loginDiv = document.querySelector("#login-Div");
 const logoutbtn = document.querySelector("#logout-btn");
-const form  = document.querySelector("#form");
+const form = document.querySelector("#form");
 const pimage = document.querySelector("#image");
-const ptitle  = document.querySelector("#title");
-const pdesc  = document.querySelector("#description");
-const price  = document.querySelector("#price");
-const fname  = document.querySelector("#fname");
-const contact  = document.querySelector("#number");
-const postbtn =  document.querySelector("#Post-Now");
-
+const ptitle = document.querySelector("#title");
+const pdesc = document.querySelector("#description");
+const price = document.querySelector("#price");
+const fname = document.querySelector("#fname");
+const contact = document.querySelector("#number");
+const postbtn = document.querySelector("#Post-Now");
 
 // check user status user login or not
 onAuthStateChanged(auth, async (user) => {
-    if (user) {
-        currentUserUid= user.uid;
-       try {
-        const q = query(collection(db, "users"), where("uid", "==", currentUserUid));
-        const querySnapshot = await getDocs(q);
-        querySnapshot.forEach((doc) => {
-            const userData = doc.data()
+  if (user) {
+    currentUserUid = user.uid;
+    try {
+      const q = query(
+        collection(db, "users"),
+        where("uid", "==", currentUserUid)
+      );
+      const querySnapshot = await getDocs(q);
+      querySnapshot.forEach((doc) => {
+        const userData = doc.data();
         if (userData.photoUrl) {
-            userIcon.src = userData.photoUrl            
+          userIcon.src = userData.photoUrl;
+        } else {
+          userIcon.src = "./Assets/default-user-icon.png"; // Fallback image
         }
-        else {
-            userIcon.src = "./Assets/default-user-icon.png"; // Fallback image
-        }
-        });
-       } 
-       catch (error) {
-        console.error("Error fetching user data:" ,error);
-       }
-        
-    } 
-    else {
-        console.log('User not authenticated');
-        loginDiv.innerHTML = `<a href="./login.html"><button class="btn btn-primary">login</button></a>`
-        window.location.href = 'login.html' ;
+      });
+    } catch (error) {
+      console.error("Error fetching user data:", error);
     }
+  } else {
+    console.log("User not authenticated");
+    loginDiv.innerHTML = `<a href="./login.html"><button class="btn btn-primary">login</button></a>`;
+    window.location.href = "login.html";
+  }
 });
 
-form.addEventListener("submit", async event => {
-    event.preventDefault()
-    postbtn.innerHTML = `<img class="loading" src="./Assets/loading-645268_1280.webp" alt="">`
-    let file = pimage.files[0]
-    let url = await uploadFile(file, `${uid} + ${Date.now()}`)
+form.addEventListener("submit", async (event) => {
+  event.preventDefault();
 
-    try {
-        const docRef = await addDoc(collection(db, "product_details"), {
-            productImage: url,
-            Product_title: ptitle.value, 
-            Product_Description: pdesc.value,
-            Price: price.value,
-            UserName: fname.value,
-            phone_number: contact.value,
-        });
+  if (!validateForm()) {
+    return;
+  }
 
-        Swal.fire({
-            title: 'Ad successfully publish :)',
-            text: 'See Your Ad',
-            icon: 'success',
-            confirmButtonText: 'See ad'
-        })
-            .then((result) => {
-                if (result.isConfirmed) {
-                    window.location = 'index.html'
-                }
-            })
+  postbtn.innerHTML = `<img class="loading" src="./Assets/loading-645268_1280.webp" alt="">`;
+  postbtn.disabled = true;
 
-        console.log("Document written with ID: ", docRef.id);
-    } catch (e) {
-        console.error("Error adding document: ", e);
+  try {
+    const file = pimage.files[0];
+    if (!file) {
+      throw new Error("Please select an image file");
     }
-})
+  } catch (error) {}
 
+  const filePath = `products/${currentUserUid}_${Date.now()}`;
+
+  let imageUrl = await uploadFile(file, filePath);
+
+  try {
+    const docRef = await addDoc(collection(db, "product_details"), {
+      productImage: imageUrl,
+      Product_title: ptitle.value,
+      Product_Description: pdesc.value,
+      Price: Number(price.value), //convert to number;
+      UserName: fname.value,
+      phone_number: contact.value,
+    });
+
+    Swal.fire({
+      title: "Ad successfully publish :)",
+      text: "See Your Ad",
+      icon: "success",
+      confirmButtonText: "See ad",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        window.location = "index.html";
+      }
+    });
+
+    console.log("Document written with ID: ", docRef.id);
+  } catch (e) {
+    console.error("Error adding document: ", e);
+  }
+});
 
 async function uploadFile(file, userEmail) {
-    const storageRef = ref(storage, userEmail);
-    try {
-        const uploadImg = await uploadBytes(storageRef, file);
-        const url = await getDownloadURL(uploadImg.ref);
-        return url;
-    } catch (error) {
-        console.error(error);
-        throw error;
-    }
+  const storageRef = ref(storage, userEmail);
+  try {
+    const uploadImg = await uploadBytes(storageRef, file);
+    const url = await getDownloadURL(uploadImg.ref);
+    return url;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
 }
 
-
 // logout function
-logoutbtn.addEventListener('click', () => {
-    signOut(auth).then(() => {
-        Swal.fire({
-            title: 'Success :)',
-            text: 'Log-out Successfully',
-            icon: 'success',
-            confirmButtonText: 'Login'
-        })
-            .then((result) => {
-                if (result.isConfirmed) {
-                    window.location = 'login.html'
-                }
-            });
-    }).catch((error) => {
-        console.log(error);
-        
+logoutbtn.addEventListener("click", () => {
+  signOut(auth)
+    .then(() => {
+      Swal.fire({
+        title: "Success :)",
+        text: "Log-out Successfully",
+        icon: "success",
+        confirmButtonText: "Login",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          window.location = "login.html";
+        }
+      });
+    })
+    .catch((error) => {
+      console.log(error);
     });
-})
+});
