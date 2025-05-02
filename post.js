@@ -32,6 +32,7 @@ const postbtn =  document.querySelector("#Post-Now");
 onAuthStateChanged(auth, async (user) => {
     if (user) {
         currentUserUid= user.uid;
+       try {
         const q = query(collection(db, "users"), where("uid", "==", currentUserUid));
         const querySnapshot = await getDocs(q);
         querySnapshot.forEach((doc) => {
@@ -43,10 +44,16 @@ onAuthStateChanged(auth, async (user) => {
             userIcon.src = "./Assets/default-user-icon.png"; // Fallback image
         }
         });
-    } else {
-        console.log('user is not here');
+       } 
+       catch (error) {
+        console.error("Error fetching user data:" ,error);
+       }
+        
+    } 
+    else {
+        console.log('User not authenticated');
         loginDiv.innerHTML = `<a href="./login.html"><button class="btn btn-primary">login</button></a>`
-        !user ? window.location = 'login.html' : console.log('user present');
+        window.location.href = 'login.html' ;
     }
 });
 
