@@ -138,7 +138,6 @@ async function uploadFile(file, filePath) {
 
 // logout function
 logoutbtn.addEventListener("click", async () => {
-
     try {
     signOut(auth);
     const result = await Swal.fire({
@@ -155,8 +154,21 @@ logoutbtn.addEventListener("click", async () => {
     } catch (error) {
         console.error("Logout error:", error);
         await Swal.fire({
-            
-        })
+            title: 'Error!',
+            text: 'Failed to logout. Please try again.',
+            icon: 'error',
+            confirmButtonText: 'OK'
+        });
     }
- 
 });
+
+// For Form validation:
+function validateForm() {
+    if (!pimage.files[0]) {
+        Swal.fire('Error', 'Please select a product image', 'error');
+        return false;
+    }
+    if (ptitle.value.trim()) {
+        
+    }
+}
