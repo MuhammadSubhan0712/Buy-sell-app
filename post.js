@@ -168,7 +168,12 @@ function validateForm() {
         Swal.fire('Error', 'Please select a product image', 'error');
         return false;
     }
-    if (ptitle.value.trim()) {
-        
+    if (!ptitle.value.trim()) {
+        Swal.fire('Error', 'Please enter a product title', 'error');
+        return false;
+    }
+    if (!price.value || isNan(price.value)) {
+        Swal.fire('Error', 'Please enter a valid price', 'error');
+        return false;
     }
 }
