@@ -176,4 +176,8 @@ function validateForm() {
         Swal.fire('Error', 'Please enter a valid price', 'error');
         return false;
     }
+    if (!contact.value.trim() || !/^\d+$/.test(contact.value)) {
+        Swal.fire('Error', 'Please enter a valid phone number', 'error');
+        return false;
+    }
 }
