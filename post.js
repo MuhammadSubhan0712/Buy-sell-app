@@ -180,4 +180,5 @@ function validateForm() {
         Swal.fire('Error', 'Please enter a valid phone number', 'error');
         return false;
     }
+    return true;
 }
