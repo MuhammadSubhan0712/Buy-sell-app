@@ -9,7 +9,9 @@ import {
 
 import { auth, db } from "./config.js";
 
-let storage = getStorage()
+const storage = getStorage();
+
+let currentUserUid = null;
 
 // Declares variables of HTML elements
 const display = document.querySelector("#div");
@@ -29,12 +31,17 @@ const postbtn =  document.querySelector("#Post-Now");
 // check user status user login or not
 onAuthStateChanged(auth, async (user) => {
     if (user) {
-        const uid = user.uid;
-        const q = query(collection(db, "users"), where("uid", "==", uid));
+        currentUserUid= user.uid;
+        const q = query(collection(db, "users"), where("uid", "==", currentUserUid));
         const querySnapshot = await getDocs(q);
         querySnapshot.forEach((doc) => {
-            let data = doc.data()
-            Icon.src = data.photoUrl
+            const userData = doc.data()
+        if (userData.photoUrl) {
+            userIcon.src = userData.photoUrl            
+        }
+        else {
+            userIcon.src = "./Assets/default-user-icon.png"; // Fallback image
+        }
         });
     } else {
         console.log('user is not here');
