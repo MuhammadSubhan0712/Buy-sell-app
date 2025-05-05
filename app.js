@@ -106,22 +106,16 @@ import { auth, db } from "./config.js";
 const  display = document.querySelector("#div");
 const  userIcon = document.querySelector("#usericon");
 const  loginDiv = document.querySelector("#login-Div");
-const  logout = document.querySelector("#logout-btn");
+const  logoutBtn = document.querySelector("#logout-btn");
 
    onAuthStateChanged(auth ,async (user) =>{
     if (user) {
     try {
-      const uid = user.uid;
-      const q = query(collection(db , "users"),where("uid" , "==" , uid));
+      const q = query(collection(db , "users"),where("uid" , "==" , user.uid));
       const querySnapshot = await getDocs(q);
       querySnapshot.forEach((doc) => {
         const userData = doc.data();
-        if (userData.url) {
-          userIcon.src = userData.url;
-        }
-        else {
-          userIcon.src = "./Assets/loading-645268_1280.webp" //fallback image
-        }
+        userIcon.src = userData.photoUrl || "./Assets/default-user.png";
       });
     } catch (error) {
       console.error("Error fetching user data:", error);
@@ -133,49 +127,6 @@ const  logout = document.querySelector("#logout-btn");
     }
    });
   
-  //  User icon click handler:
-   userIcon.addEventListener("click" , ()=>{
-    Swal.fire({
-      title: 'Post an Ad',
-      text: 'Do you want to post a new ad?',
-      icon: 'question',
-      showCancelButton: true,
-      confirmButtonText: 'Post Ad',
-      cancelButtonText: 'Cancel'
-  }) 
-  .then((result) =>{
-    if (result.isConfirmed) {
-      window.location.href = "post.html";
-    }
-  });
-  })
-
-
-logout.addEventListener("click" , ()=>{
-  signOut(auth).then(() =>{
-    Swal.fire({
-      title: 'Logged Out',
-      text: 'You have been logged out successfully',
-      icon: 'success',
-      confirmButtonText: 'Login'
-    })
-    .then((result) =>{
-      if (result.isConfirmed) {
-        window.location.href = "login.html";
-      }
-    });
-  }).catch((error) =>{
-    console.log("Logout error", error);
-    Swal.fire({
-      title: 'Error',
-      text: 'Failed to logout. Please try again.',
-      icon: 'error'
-    });
-  });
-});
-
-
-
 // Async Function to render the products:
 async function renderProducts() {
 
@@ -184,11 +135,22 @@ async function renderProducts() {
     
     const productQuery = query(collection(db, "product_details"), orderBy("createdAt", "desc"));
     const querySnapshot = await getDocs(productQuery);
-    const products = [];
+    display.innerHTML = "";
+
     querySnapshot.forEach((doc) =>{
       const product = doc.data();
-      product.id = doc.id; //For future refrence:
-      products.push(product);
+      const productCard = document.createElement("div");
+      productCard.className = "card w-96 bg-base-100 shadow-w-xl m-4";
+      productCard.innerHTML =
+      `<figure><img src="${product.productImage}" alt="${product.Product_title}" class="h-48 w-full object-cover"></figure>
+      <div class="card-body"> 
+      <h2 class="card-title"> ${product.Product_title} </h2>
+      <p> ${product.Price}Rs. </p>
+      <div class="card-actions justify-end">
+      <button class="btn btn-primary view-details" data-id="${doc.id}">View Details</button>
+      </div>
+      </div>
+      `
     });
   } catch (error) {
     
@@ -222,3 +184,48 @@ Cart.forEach((btn , index) => {
 })
 }
 renderProducts();
+
+
+  //  User icon click handler:
+   userIcon.addEventListener("click" , ()=>{
+    Swal.fire({
+      title: 'Post an Ad',
+      text: 'Do you want to post a new ad?',
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonText: 'Post Ad',
+      cancelButtonText: 'Cancel'
+  }) 
+  .then((result) =>{
+    if (result.isConfirmed) {
+      window.location.href = "post.html";
+    }
+  });
+  })
+
+
+logoutBtn.addEventListener("click" , ()=>{
+  signOut(auth).then(() =>{
+    Swal.fire({
+      title: 'Logged Out',
+      text: 'You have been logged out successfully',
+      icon: 'success',
+      confirmButtonText: 'Login'
+    })
+    .then((result) =>{
+      if (result.isConfirmed) {
+        window.location.href = "login.html";
+      }
+    });
+  }).catch((error) =>{
+    console.log("Logout error", error);
+    Swal.fire({
+      title: 'Error',
+      text: 'Failed to logout. Please try again.',
+      icon: 'error'
+    });
+  });
+});
+
+
+
