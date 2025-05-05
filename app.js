@@ -151,6 +151,7 @@ async function renderProducts() {
       </div>
       </div>
       `
+      display.appendChild(productCard);
     });
   } catch (error) {
     
