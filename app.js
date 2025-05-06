@@ -160,13 +160,30 @@ async function renderProducts() {
         const user = auth.currentUser;
         if (!user) {
           const result = await Swal.fire({
-            
-          })
+          title: "Login Required",
+          text: "You need to login to view product details",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonText: "Login",
+          cancelButtonText: "Cancel",
+          });
+
+          if (result.isConfirmed) {
+            window.location.href = "login.html";
+          }
+          return;
         }
-      })
-    })
+        //For the full details:
+        const product = querySnapshot.docs.find(doc => doc.id === productId)?.data();
+        if (product) {
+          localStorage.setItem("selectedProduct", JSON.stringify(product));
+          window.location.href = "cart.html";
+        }
+      });
+    });
   } catch (error) {
-    
+    console.error("Error loading products" , error);
+    display.innerHTML = 
   }
 
   display.innerHTML = " ";
