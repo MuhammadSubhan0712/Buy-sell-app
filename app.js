@@ -153,6 +153,18 @@ async function renderProducts() {
       `
       display.appendChild(productCard);
     });
+
+    document.querySelectorAll(".view-detials").forEach(button =>{
+      button.addEventListener("click", async (e) => {
+        const productId = e.target.getAttribute("data-id");
+        const user = auth.currentUser;
+        if (!user) {
+          const result = await Swal.fire({
+            
+          })
+        }
+      })
+    })
   } catch (error) {
     
   }
