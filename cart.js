@@ -24,8 +24,6 @@ const CartDiv = document.querySelector("#Card-Div");
 const buyBtn = document.querySelector("#buy-btn");
 const exitBtn = document.querySelector("#exit-btn");
 
-
-
 // check user status user login or not
 onAuthStateChanged(auth, async (user) => {
   if (!user) {
@@ -33,47 +31,47 @@ onAuthStateChanged(auth, async (user) => {
       title: "Login Required",
       text: "Please login to view product details",
       icon: "warning",
-      confirmButtonText: "Login"
+      confirmButtonText: "Login",
     }).then(() => {
       window.location.href = "login.html";
     });
     return;
-    }
+  }
 
-    //load user data:
-    const q  = query(collection(db, "users"), where("uid", "==", user.uid));
-    getDocs(q).then(querySnapshot => {
-      querySnapshot.forEach(doc => {
+  //load user data:
+  const q = query(collection(db, "users"), where("uid", "==", user.uid));
+  getDocs(q)
+    .then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
         const userData = doc.data();
         userIcon.src = userData.photoUrl || "./Assets/default-user.png";
       });
-    }).catch(error => {
-      console.error("Error loading user data: ", error)
+    })
+    .catch((error) => {
+      console.error("Error loading user data: ", error);
     });
-  });
-
+});
 
 function renderProductDetails() {
-  
-const product = JSON.parse(localStorage.getItem("selectedProduct"));
-console.log(product);
-if (!product) {
-  Swal.fire({
-    title: "Error",
-    text: "Product not found",
-    icon: "error"
-  }).then(() => {
-    window.location.href = "index.html";
-  });
-  return;
-}
+  const product = JSON.parse(localStorage.getItem("selectedProduct"));
+  console.log(product);
+  if (!product) {
+    Swal.fire({
+      title: "Error",
+      text: "Product not found",
+      icon: "error",
+    }).then(() => {
+      window.location.href = "index.html";
+    });
+    return;
+  }
   productImage.src = product.productImage;
   productTitle.textContent = product.Product_title;
   productDesc.textContent = product.Product_Description;
   productPrice.textContent = `${product.Price}Rs.`;
   sellerName.textContent = product.UserName;
   phoneNumber.textContent = product.phone_number;
-  
+
   CartDiv.innerHTML += `        
         <figure class="px-10 pt-10">
         <img id="image" src="${product.productImage}" alt="${product.Product_title}" class="rounded-xl w-full h-64 object-cover">
@@ -93,20 +91,19 @@ if (!product) {
         </div>
     `;
 
-// For buttons:
-// Add event listeners:
-buyBtn.addEventListener("click" , () => {
-  Swal.fire({
-    title: "Contact Seller",
-    html: `Call or message the seller at: <b>${product.phone_number}</b>`,
-    icon: "info"
+  // For buttons:
+  // Add event listeners:
+  buyBtn.addEventListener("click", () => {
+    Swal.fire({
+      title: "Contact Seller",
+      html: `Call or message the seller at: <b>${product.phone_number}</b>`,
+      icon: "info",
+    });
   });
-});
 
-exitBtn.addEventListener("click", () => {
-  window.location.href= "index.html";
-});
-
+  exitBtn.addEventListener("click", () => {
+    window.location.href = "index.html";
+  });
 }
 
 userIcon.addEventListener("click", () => {
@@ -126,18 +123,24 @@ userIcon.addEventListener("click", () => {
 });
 
 // logout function
-logoutBtn.addEventListener("click", () => {
-
+logoutBtn.addEventListener("click", async () => {
   try {
     signOut(auth);
-      Swal.fire({
-        title: "Logged Out",
-        text: "You have been logged out successfully",
-        icon: "success",
-      });        
-        window.location.href = "login.html";
-  
+    Swal.fire({
+      title: "Logged Out",
+      text: "You have been logged out successfully",
+      icon: "success",
+    });
+    window.location.href = "login.html";
   } catch (error) {
-    
+    console.error("Logout error:", error);
+    await Swal.fire({
+      title: "Error",
+      text: "Failed to logout",
+      icon: "error",
+    });
   }
 });
+
+// function Initialize:
+renderProductDetails();
