@@ -67,60 +67,77 @@ if (!product) {
   });
   return;
 }
-  (pimage.src = getdata.pimage),
-    (ptitle.innerHTML = getdata.Product_title),
-    (pdescription.innerHTML = getdata.Product_Description),
-    (pprice.innerHTML = getDocs.Price),
-    (userName.innerHTML = getDocs.UserName),
-    (phone_number.innerHTML = getDocs.phone_number);
-  CartDiv.innerHTML += `  
-        
+  productImage.src = product.productImage;
+  productTitle.textContent = product.Product_title;
+  productDesc.textContent = product.Product_Description;
+  productPrice.textContent = `${product.Price}Rs.`;
+  sellerName.textContent = product.UserName;
+  phoneNumber.textContent = product.phone_number;
+  
+  CartDiv.innerHTML += `        
         <figure class="px-10 pt-10">
-        <img id="image" src="${pimage}" alt="XD Logo" class="w-full h-48 object-cover">
+        <img id="image" src="${product.productImage}" alt="${product.Product_title}" class="rounded-xl w-full h-64 object-cover">
         </figure>
-        <div class="card-body text-center">
-            <h2 class="card-title text-blue-800">Title: ${ptitle}</h2>
-            <h2 class="card-title text-blue-800">Description: ${pdescription}</h2>
-            <h2 class="card-title text-blue-800">Price: ${pprice}</h2>
-            <h3 class="card-title text-blue-800">Seller Name: ${userName}</h3>
-            <h3 class="card-title text-blue-800">Seller Contact: ${phone_number}</h3>
-            <div class="card-actions justify-center mt-4">
-                <button class="btn btn-primary bg-blue-800 border-blue-800 text-white">Buy Product</button>
-                <button class="btn btn-outline border-gray-700 text-gray-700 hover:bg-blue-800 hover:text-white">Exit</button>
-            </div>
-        </div>`;
-}
-render();
+        <div class="card-body items-center text-center">
+        <h2 class="card-title text-2xl">Title: ${product.Product_title}</h2>
+        <p class="text-lg">Description: ${product.Product_Description}</p>
+        <p class="text-xl font-bold">Price: ${product.Price}Rs.</p>
+        
+        <div class="divider"></div>
+          <h3 class="text-lg">Seller: ${product.UserName}</h3>
+          <h3 class="text-lg">Contact: ${product.phone_number}</h3>
+        <div class="card-actions justify-center mt-6">
+          <button id="buy-btn" class="btn btn-primary">Contact Seller</button>
+          <button id="exit-btn" class="btn btn-ghost">Back to Products</button>
+        </div>
+        </div>
+    `;
 
-
-Icon.addEventListener("click", () => {
+// For buttons:
+// Add event listeners:
+buyBtn.addEventListener("click" , () => {
   Swal.fire({
-    title: "!Setting!",
-    text: "Do you want to Ad post",
-    confirmButtonText: "Ad Post",
-  }).then((result) => {
-    if (result.isConfirmed) {
-      window.location = "./postad.html";
-    }
+    title: "Contact Seller",
+    html: `Call or message the seller at: <b>${product.phone_number}</b>`,
+    icon: "info"
   });
+});
+
+exitBtn.addEventListener("click", () => {
+  window.location.href= "index.html";
+});
+
+}
+
+userIcon.addEventListener("click", () => {
+  const user = auth.currentUser;
+
+  if (user) {
+    Swal.fire({
+      title: "!Setting!",
+      text: "Do you want to Ad post",
+      confirmButtonText: "Ad Post",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        window.location.href = "post.html";
+      }
+    });
+  }
 });
 
 // logout function
 logoutBtn.addEventListener("click", () => {
-  signOut(auth)
-    .then(() => {
+
+  try {
+    signOut(auth);
       Swal.fire({
-        title: "Success :)",
-        text: "Log-out Successfully",
+        title: "Logged Out",
+        text: "You have been logged out successfully",
         icon: "success",
-        confirmButtonText: "Login",
-      }).then((result) => {
-        if (result.isConfirmed) {
-          window.location = "./login.html";
-        }
-      });
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+      });        
+        window.location.href = "login.html";
+  
+  } catch (error) {
+    
+  }
 });
