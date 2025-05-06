@@ -12,21 +12,61 @@ import { auth, db } from "./config.js";
 
 // Declares variables of HTML elements
 
-let logoutBtn = document.querySelector("#logout-btn");
-let Icon = document.querySelector("#usericon");
-let ptitle = document.querySelector("#title");
-let phone_number = document.querySelector("#number");
-let userName = document.querySelector("#fname");
-let pimage = document.querySelector("#image");
-let pprice = document.querySelector("#price");
-let pdescription = document.querySelector("#description");
-let CartDiv = document.querySelector("#Card-Div");
+const logoutBtn = document.querySelector("#logout-btn");
+const userIcon = document.querySelector("#usericon");
+const productTitle = document.querySelector("#title");
+const phoneNumber = document.querySelector("#number");
+const sellerName = document.querySelector("#fname");
+const productImage = document.querySelector("#image");
+const productPrice = document.querySelector("#price");
+const productDesc = document.querySelector("#description");
+const CartDiv = document.querySelector("#Card-Div");
+const buyBtn = document.querySelector("#buy-btn");
+const exitBtn = document.querySelector("#exit-btn");
 
-let getdata = JSON.parse(localStorage.getItem("Product"));
 
-console.log(getdata);
 
-function render() {
+// check user status user login or not
+onAuthStateChanged(auth, async (user) => {
+  if (!user) {
+    Swal.fire({
+      title: "Login Required",
+      text: "Please login to view product details",
+      icon: "warning",
+      confirmButtonText: "Login"
+    }).then(() => {
+      window.location.href = "login.html";
+    });
+    return;
+    }
+
+    //load user data:
+    const q  = query(collection(db, "users"), where("uid", "==", user.uid));
+    getDocs(q).then(querySnapshot => {
+      querySnapshot.forEach(doc => {
+        const userData = doc.data();
+        userIcon.src = userData.photoUrl || "./Assets/default-user.png";
+      });
+    }).catch(error => {
+      console.error("Error loading user data: ", error)
+    });
+  });
+
+
+function renderProductDetails() {
+  
+const product = JSON.parse(localStorage.getItem("selectedProduct"));
+console.log(product);
+if (!product) {
+  Swal.fire({
+    title: "Error",
+    text: "Product not found",
+    icon: "error"
+  }).then(() => {
+    window.location.href = "index.html";
+  });
+  return;
+}
   (pimage.src = getdata.pimage),
     (ptitle.innerHTML = getdata.Product_title),
     (pdescription.innerHTML = getdata.Product_Description),
@@ -52,53 +92,6 @@ function render() {
 }
 render();
 
-// check user login status
-onAuthStateChanged(auth, async (user) => {
-  if (user) {
-    const uid = user.uid;
-    const q = query(collection(db, "users"), where("uid", "==", uid));
-    const querySnapshot = await getDocs(q);
-    querySnapshot.forEach((doc) => {
-      let data = doc.data();
-      Icon.src = data.photoUrl;
-    });
-  } else {
-    Swal.fire({
-      title: "Setting!",
-      text: "Please Login First",
-      confirmButtonText: "Login",
-      icon: "error",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        window.location = "index.html";
-      }
-    });
-  }
-});
-
-// check user status user login or not
-onAuthStateChanged(auth, async (user) => {
-  if (user) {
-    const uid = user.uid;
-    const q = query(collection(db, "users"), where("uid", "==", uid));
-    const querySnapshot = await getDocs(q);
-    querySnapshot.forEach((doc) => {
-      let data = doc.data();
-      Icon.src = data.photoUrl;
-    });
-  } else {
-    Swal.fire({
-      title: "!Setting!",
-      text: "Please Login First",
-      confirmButtonText: "Login",
-      icon: "error",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        window.location = "index.html";
-      }
-    });
-  }
-});
 
 Icon.addEventListener("click", () => {
   Swal.fire({
