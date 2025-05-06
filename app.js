@@ -1,9 +1,15 @@
-
-import { onAuthStateChanged, signOut, } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
-import { collection, orderBy , getDocs, query, where } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
+import {
+  onAuthStateChanged,
+  signOut,
+} from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
+import {
+  collection,
+  orderBy,
+  getDocs,
+  query,
+  where,
+} from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
 import { auth, db } from "./config.js";
-
-
 
 // let products = [
 //       {
@@ -102,16 +108,16 @@ import { auth, db } from "./config.js";
 //       }
 //     ];
 
-    // Declares variables of HTML elements
-const  display = document.querySelector("#div");
-const  userIcon = document.querySelector("#usericon");
-const  loginDiv = document.querySelector("#login-Div");
-const  logoutBtn = document.querySelector("#logout-btn");
+// Declares variables of HTML elements
+const display = document.querySelector("#div");
+const userIcon = document.querySelector("#usericon");
+const loginDiv = document.querySelector("#login-Div");
+const logoutBtn = document.querySelector("#logout-btn");
 
-   onAuthStateChanged(auth ,async (user) =>{
-    if (user) {
+onAuthStateChanged(auth, async (user) => {
+  if (user) {
     try {
-      const q = query(collection(db , "users"),where("uid" , "==" , user.uid));
+      const q = query(collection(db, "users"), where("uid", "==", user.uid));
       const querySnapshot = await getDocs(q);
       querySnapshot.forEach((doc) => {
         const userData = doc.data();
@@ -120,29 +126,30 @@ const  logoutBtn = document.querySelector("#logout-btn");
     } catch (error) {
       console.error("Error fetching user data:", error);
     }
-    }
-    else {
+  } else {
     console.log("User not loggedIn");
-    loginDiv.innerHTML = `<a href="./login.html"><button class="btn btn-primary">Login</button></a>`
-    }
-   });
-  
+    loginDiv.innerHTML = `<a href="./login.html"><button class="btn btn-primary">Login</button></a>`;
+  }
+});
+
 // Async Function to render the products:
 async function renderProducts() {
-
   try {
-    display.innerHTML = '<div class="text-center py-8"><span class="loading loading-spinner loading-lg"></span></div>';
-    
-    const productQuery = query(collection(db, "product_details"), orderBy("createdAt", "desc"));
+    display.innerHTML =
+      '<div class="text-center py-8"><span class="loading loading-spinner loading-lg"></span></div>';
+
+    const productQuery = query(
+      collection(db, "product_details"),
+      orderBy("createdAt", "desc")
+    );
     const querySnapshot = await getDocs(productQuery);
     display.innerHTML = "";
 
-    querySnapshot.forEach((doc) =>{
+    querySnapshot.forEach((doc) => {
       const product = doc.data();
       const productCard = document.createElement("div");
       productCard.className = "card w-96 bg-base-100 shadow-w-xl m-4";
-      productCard.innerHTML =
-      `<figure><img src="${product.productImage}" alt="${product.Product_title}" class="h-48 w-full object-cover"></figure>
+      productCard.innerHTML = `<figure><img src="${product.productImage}" alt="${product.Product_title}" class="h-48 w-full object-cover"></figure>
       <div class="card-body"> 
       <h2 class="card-title"> ${product.Product_title} </h2>
       <p> ${product.Price}Rs. </p>
@@ -150,22 +157,22 @@ async function renderProducts() {
       <button class="btn btn-primary view-details" data-id="${doc.id}">View Details</button>
       </div>
       </div>
-      `
+      `;
       display.appendChild(productCard);
     });
 
-    document.querySelectorAll(".view-detials").forEach(button =>{
+    document.querySelectorAll(".view-detials").forEach((button) => {
       button.addEventListener("click", async (e) => {
         const productId = e.target.getAttribute("data-id");
         const user = auth.currentUser;
         if (!user) {
           const result = await Swal.fire({
-          title: "Login Required",
-          text: "You need to login to view product details",
-          icon: "warning",
-          showCancelButton: true,
-          confirmButtonText: "Login",
-          cancelButtonText: "Cancel",
+            title: "Login Required",
+            text: "You need to login to view product details",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonText: "Login",
+            cancelButtonText: "Cancel",
           });
 
           if (result.isConfirmed) {
@@ -174,7 +181,9 @@ async function renderProducts() {
           return;
         }
         //For the full details:
-        const product = querySnapshot.docs.find(doc => doc.id === productId)?.data();
+        const product = querySnapshot.docs
+          .find((doc) => doc.id === productId)
+          ?.data();
         if (product) {
           localStorage.setItem("selectedProduct", JSON.stringify(product));
           window.location.href = "cart.html";
@@ -182,7 +191,7 @@ async function renderProducts() {
       });
     });
   } catch (error) {
-    console.error("Error loading products" , error);
+    console.error("Error loading products", error);
     display.innerHTML = `
       <div class="alert alert-error">
         <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24">
@@ -190,57 +199,58 @@ async function renderProducts() {
         </svg>
         <span>Error loading products. Please try again later.</span>
       </div>
-    `
+    `;
   }
 }
-renderProducts();
 
-
-  //  User icon click handler:
-   userIcon.addEventListener("click" , ()=>{
-    const user = auth.currentUser;
-    if (user) {
-     Swal.fire({
-      title: 'Post an Ad',
-      text: 'Do you want to post a new ad?',
-      icon: 'question',
-      showCancelButton: true,
-      confirmButtonText: 'Post Ad',
-      cancelButtonText: 'Cancel'
-  })  
-  .then((result) =>{
-    if (result.isConfirmed) {
-      window.location.href = "post.html";
-    }
-  });
-} else {
-  
-}
-})
-
-
-logoutBtn.addEventListener("click" , ()=>{
-  signOut(auth).then(() =>{
+//  User icon click handler:
+userIcon.addEventListener("click", () => {
+  const user = auth.currentUser;
+  if (user) {
     Swal.fire({
-      title: 'Logged Out',
-      text: 'You have been logged out successfully',
-      icon: 'success',
-      confirmButtonText: 'Login'
-    })
-    .then((result) =>{
+      title: "Post an Ad",
+      text: "Do you want to post a new ad?",
+      icon: "question",
+      showCancelButton: true,
+      confirmButtonText: "Post Ad",
+      cancelButtonText: "Cancel",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        window.location.href = "post.html";
+      }
+    });
+  } else {
+    Swal.fire({
+      title: "Login Required",
+      text: "You need to login to post an ad",
+      icon: "warning",
+      confirmButtonText: "Login",
+    }).then((result) => {
       if (result.isConfirmed) {
         window.location.href = "login.html";
       }
     });
-  }).catch((error) =>{
-    console.log("Logout error", error);
-    Swal.fire({
-      title: 'Error',
-      text: 'Failed to logout. Please try again.',
-      icon: 'error'
-    });
-  });
+  }
 });
 
+logoutBtn.addEventListener("click", async () => {
+  try {
+    signOut(auth);
+    await Swal.fire({
+      title: "Logged Out",
+      text: "You have been logged out successfully",
+      icon: "success",
+    });
+    window.location.href = "login.html";
+  } catch (error) {
+    console.log("Logout error", error);
+    Swal.fire({
+      title: "Error",
+      text: "Failed to logout. Please try again.",
+      icon: "error",
+    });
+  }
+});
 
-
+// Function Initialize:
+renderProducts();
