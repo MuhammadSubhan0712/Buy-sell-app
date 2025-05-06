@@ -183,55 +183,40 @@ async function renderProducts() {
     });
   } catch (error) {
     console.error("Error loading products" , error);
-    display.innerHTML = 
-  }
-
-  display.innerHTML = " ";
-  products.map((items , index) =>{
-    display.innerHTML += `
-        <div class="card w-96 border shadow-xl text-white left-5">
-        <figure>
-            <img id="image" src="${items.image}" alt="Sample Image" class="w-full h-48 object-cover">
-        </figure>
-        <div class="card-body">
-            <h1 id="cart-title" class="card-title">Title: ${items.title}</h1>
-            <h2  id="cart-brand"  class="card-title">Brand: ${items.Description}</h2>
-            <p id="number" class="card-title">Contact Seller: ${items.number}</p>
-            <p  id="price"  class="font-size-5"><b>Price: ${items.price}$</b></p>
-            <div class="card-actions justify-center">
-                <button id="Cart" class="btn btn-primary">Read More</button>
-            </div>
-        </div>
-    </div>
+    display.innerHTML = `
+      <div class="alert alert-error">
+        <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        <span>Error loading products. Please try again later.</span>
+      </div>
     `
-let Cart = document.querySelectorAll("#Cart");
-Cart.forEach((btn , index) => {
-  btn.addEventListener("click" , () => {
-            localStorage.setItem("Product" , JSON.stringify(products[index]));
-            window.location = "Cart.html";
-  })
-})
-})
+  }
 }
 renderProducts();
 
 
   //  User icon click handler:
    userIcon.addEventListener("click" , ()=>{
-    Swal.fire({
+    const user = auth.currentUser;
+    if (user) {
+     Swal.fire({
       title: 'Post an Ad',
       text: 'Do you want to post a new ad?',
       icon: 'question',
       showCancelButton: true,
       confirmButtonText: 'Post Ad',
       cancelButtonText: 'Cancel'
-  }) 
+  })  
   .then((result) =>{
     if (result.isConfirmed) {
       window.location.href = "post.html";
     }
   });
-  })
+} else {
+  
+}
+})
 
 
 logoutBtn.addEventListener("click" , ()=>{
